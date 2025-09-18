@@ -1,0 +1,54 @@
+7  物件儲存服務管理
+7.1  租 戶 管理者可管理存取金鑰供使用者存取物件儲存貯體
+● 以瀏覽器開 啟 使用者介面 ： https://portal.sensimesh.nchc.org.tw/portal
+● 以 iService  專案帳號連線至使用者介面並切換至 Object Storage 服務頁面建立存取金鑰
+● 取得 Endpoint 、 Access Key 、 Secret Key
+相容於 S3 之物件儲存池功能，包含租 戶 層級權限管理、建立或刪除一或多把存取金鑰（
+Access/Secret Keys ）
+● 於使用者介面 Object Storage 服務頁面建立多把存取金鑰
+● 指定 Object Storage 金鑰並刪除
+7.1.1  建立金鑰
+● 切換至 Object Storage  服務
+● 點選 Add Object Key
+● 輸入 Object Key  名稱，按下 Create  建立
+● 複製相關資訊供後續存取使用
+○ Endpoint
+○ Access key
+○ Secret key
+7.1.2  刪除金鑰
+● 點選要刪除的 Object Ket  ，並且按 Delete
+● 確認刪除
+● 完成金鑰刪除
+7.2  使用者介面於租 戶 層級下建立並管理儲存貯體（ buckets ）
+使用者透過使用者介面、以 iService 帳號登入，系統依據所屬專案及角色於登入後導入
+使用者介面取得金鑰、並透過 S3 相關軟體進行後續操作
+● 取得專案存取金鑰（ access/secret key ）
+● 透過 S3 用 戶 端軟體（如 S3 Browser ）建立 bucket
+● 透過 S3 用 戶 軟體於 bucket 上傳檔案
+7.2.1  建立帳號 ( s3browser)
+● 建立 NCHC s3  帳號
+○ 名稱：使用者自行命名
+○ endpoint : https://s3.sensimesh.nchc.org.tw
+○ 專案的 Access/Secret key ：使用者可至 Object 取得需要的 Key
+● 點選 Add new account  完成建立
+7.2.2  登入並操作 bucket ( s3browser)
+● 選擇帳號登入物件儲存服務
+● 建立 bucket
+○ 點選 New bucket
+○ 輸入名稱後點選 Create Bucket
+● 完成建立 bucket
+● 指定、切換 bucket  與上傳檔案至 bucket
+7.2.3  設定物件權限
+● 右鍵點選物件
+● 選擇 Edit Permission (ACL)
+● 指定權限
+註：目前版本權限為專案共享，僅支援增加所有使用者權限，亦即 All Users
+7.2.4  針對儲存貯體建立規則
+● 選擇儲存貯體按下右鍵
+● 點選 Edit Bucket Policy
+● 依據 policy 需求編輯規則並按下 Apply 套用
+註：可參考 Policy Examples 或 Policy Generator 參考範例建立所需規則
+7.2.5  透過公開連結存取物件
+● 設定物件權限為公開
+● 選擇物件並透過 URL  取得連結
+● 透過瀏覽器輸入連結存取物件

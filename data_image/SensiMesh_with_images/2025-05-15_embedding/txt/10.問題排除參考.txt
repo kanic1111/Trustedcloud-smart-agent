@@ -1,0 +1,48 @@
+10  問題排除參考
+10.1  建立 Live Snapshot  遇到 API Error  問題
+● 透過使用者介面點選 Live Snapshot 無法建立且回傳 API 錯誤通常係出於 qemu-guest-agent
+尚未 啟 動或因錯誤造成停止，可先於 console 確認服務狀態再行操作
+10.1.1 虛擬機建立完成狀況顯示為 Running 但系統尚未完全載入
+● 參考 建立 Linux 虛擬主機 或 建立 Windows 虛擬主機 建立 內 含 qemu-guest-agent 之虛擬主
+機，並於建立完成立即建立 Live Snapshot ，如遇有 API Error 請透過 console 執行
+○ systemctl status qemu-guest-agen
+● 確認 qemu-guest-agent 服務為 Active/Running 狀態後請透過 Live Snapshot 重新建立
+請於虛擬主機建立完成後進入 console 確認 qemu-guest-agent 服務運行正確後再行建立
+Live Snapshot
+10.1.2  虛擬主機因任何原因導致 qemu-guest-agent 停止運作造成
+● 在以運作一段時間虛擬主機建立 Live Snapshot 遇到錯誤，請透過 console 執行
+○ systemctl status qemu-guest-agen
+● 確認 qemu-guest-agent 服務為 Active/Running 狀態，如為停止請透過 systemctl 指令將其開
+啟
+● 確認 qemu-guest-agent 為 啟 動狀態後再執行 Live Snapshot 建立
+10.2  透過 Kubernetes 進階介面下載之 kubeconfig 有憑證問題
+● 透過 Kubernetes 進階介面下載之 kubeconfig 與使用者介面提供連結下載不同
+● 此為已知問題，使用者介面所提供之下載連結係針對符合使用者權限建立之 kubeconfig
+，請透過該介面下載以符合權限、憑證等相關需求
+● 請參考 「 檢視叢集與 config 下載 」 於使用者介面下載 kubeconfig 檔案
+● 若仍須使用該 kubeconfig 檔案，請加上 —insecure-skip-tls-verify 參數（不建議）
+○ kubectl --insecure-skip-tls-verify --kubeconfig=k8s-bs-v2.yaml get all
+10.3  排除透過負載平衡服務做轉址時效過短問題
+透過負載平衡服務做後端虛擬主機 SSH 連線時可能遇到過快逾時為預期結果，原因為
+負載平衡服務氣的系統預設 tiemout 值 為 50 秒，在前端或後端無任何動作時及關閉連線，目
+的在於有效的連線管理及適用於一般多連線的負載平衡應用、或安全考量等，如使用者有
+如前述維持 SSH 連線不中斷以利作業等需求，建議透過用 戶 端設定調整 KeepAlive 等連線維
+持選項達成，以下針對不同平台 SSH 用 戶 端設定連線維持做進一步描述。
+10.3.1 Windows 使用 PuTTY 作為 SSH 用 戶 端連線軟體
+開 啟 PuTTY 連線軟體，點選 Default Settings 再按下 Load
+● 於左側選單點選 Connections
+● 於 Sending of null packets to keep session active 下輸入時間間隔如 30 秒用以維持連線
+● 點選 Session 會到設定頁面
+● 再次點選 Default Settings 然後按下 Save 儲存設定
+10.3.2  一般 Linux SSH client 之設定
+● 於一般具 SSH client 的 Linux 作業系統中，可透過修改設定檔維持連線
+● 以 root 身分修改 /etc/ssh/ssh_config 加入或取消以下註解套用至所有使用者
+Host *
+ServerAliveInterval 30
+ServerAliveCountMax 2
+可於每 30 秒維持連線狀態，如主機無回應會重新傳送兩次後停止
+● 如為一般使用者可於家目錄下的 .ssh 資料夾 內 建立 ssh_config 自行調整維持連線設定
+檔案： ~/.ssh/config
+內 容： Host *
+ServerAliveInterval 30
+ServerAliveCountMax 2

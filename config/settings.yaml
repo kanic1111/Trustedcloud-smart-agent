@@ -1,0 +1,36 @@
+# llm 基本 url、model_name
+# "http://140.110.160.97:30002/v1"
+# "ollama"
+# "llama4-scout"
+openai_base_url: "http://140.110.160.253:30002/v1"
+api_key : "ollama"
+llm_model_name : "llama3.3:70b-instruct-q5_K_M"
+
+# LLM 用
+openai_base_url_llm: "http://140.110.160.97:30002/v1""
+api_key_llm : "ollama"
+llm_model_name_llm : "llama4-scout"
+
+# 預設 prompt 目前預設是 basic, 共有 basic , structured, article_qa, k8s_instruction 三總
+prompt_style: "k8s_instruction"
+
+# reranker 一次輸出數量
+reranker_top: 5
+
+# Qdrant name 機敏雲、可信賴雲
+SensiMesh_Qdrant_vector_collection_name: "SensiMesh_20250519_512_10_bge-m3"
+trusted_cloud_Qdrant_vector_collection_name: "trusted-cloud_20250701_512_10_bge-m3"
+qdrant_ip: "qdrant.example.com"
+ollama_ip: "ollama.example.com"
+# embed_model name 
+embed_model_name: "bge-m3"
+
+# 預設溫度參數
+temperature: 0.1
+
+# image 連 API 用 IP 設定
+server:
+  # host_ip: ${VM_HOST}
+  host_ip: 140.110.160.10
+  port: 8005  # TODO 如果沒有值 使用https://(HOST_IP)/images
+#  image_base_url: "http://140.110.160.164:8005/images"

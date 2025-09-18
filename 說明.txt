@@ -1,0 +1,47 @@
+這是一版
+agent只負責收集參數
+最後由使用者自行回復確認建立
+才會執行建立的agent
+
+建立docker :
+
+
+
+docker build -t vm-agent-api-v1 .
+docker run -d -p 8000:8000 --name vm-agent-api-v1 vm-agent-api-v1
+
+
+docker build -t vm-agent-api-v2 .
+docker run -d -p 8002:8002 --name vm-agent-api-v2 vm-agent-api-v2
+
+
+docker build -t vm-agent-api-v4 .
+docker run -d -p 8004:8004 --name vm-agent vm-agent-api-v4
+
+docker build -t vm-agent-api-kc-v1 .
+docker run -d -p 8101:8101 --name vm-agent-api-kc-v1 vm-agent-api-kc-v1
+
+docker build -t chat-v1 .
+docker run -d -p 8005:8005 --name chat-v1 chat-v1
+
+docker run -d \
+  --name chat-v1 \
+  --network llm_network \
+  -p 8005:8005 \
+  chat-v1
+
+
+
+docker build -t jupyter-agent-api-v1 .
+docker run -d -p 7001:7001 --name jupyter-agent-api-v1 jupyter-agent-api-v1
+
+
+
+
+
+
+注意ollama 等等的network
+
+
+llm agi
+要記得qdrantDB

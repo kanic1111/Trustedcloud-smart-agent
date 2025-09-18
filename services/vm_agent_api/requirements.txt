@@ -1,0 +1,7 @@
+openai
+openai-agents
+fastapi
+uvicorn
+requests
+python-dotenv
+PyYAML

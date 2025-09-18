@@ -1,0 +1,10 @@
+1  前言 Introduction
+1.1  專案目的 Purpose
+本案所規劃之研究服務驗證以整合商用版 OpenStack  為主之雲端服務平台為主，用以 支援政府所需之混合雲端服務，其中包括 : 存取虛擬機 Console 、虛擬主機 (VM) 、區塊儲存 (Block Storage) 、物件儲存 (Object Storage) 、虛擬網路拓樸 (Virtual Network Topology) 、網路負 載平衡服務 (LBaaS) 、虛擬私有網路 (VPN) 、 DNS-as-a-Service, Rating-as-a-Service, File-as-a-Service, Workflow-as-as-Service, App- category  等服務，且達軟體定義的集中式方法 (software defined everything) ，軟體本身打包成靈活的構建塊，將組織的所有儲存、網絡、計 算和虛擬化功能整合到一個解決方案中，這樣可伸縮、簡單且具有成本效益的方法。
+雲端平台服務環境具備提供高可用性、資料之備份與保全以及整合公有雲服務之資源， 本案建置之雲端平台服務須具備高強韌與 CI/CD (Continuous Integration/Continuous Deployment) 之維運能力，並有完善平台資安監控管理功能。此外，更須具備混合雲 (Hybrid Cloud) 功能，讓本案平台可調用公有雲之計算資源服務與儲存資源服務。
+1.2  叢集環境
+1.2.1  主叢集環境
+● 節點建置
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page1_img0.png）
+● 網路建置
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page1_img1.png）

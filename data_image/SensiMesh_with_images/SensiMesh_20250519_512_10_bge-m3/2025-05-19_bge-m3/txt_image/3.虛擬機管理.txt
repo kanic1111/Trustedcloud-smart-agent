@@ -1,0 +1,503 @@
+3  虛擬機管理
+3.1  建立 Linux 虛擬主機
+● 透過下拉選單選擇專案
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page13_img24.png）
+● 在管理選單點選 Instances,  按下 + Add Instance
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page13_img25.png）
+● 在新增虛擬主機頁面選擇映像檔與作業系統版本
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page14_img26.png）
+註：選擇作業系統後，會於上圖反白之訊息區塊，顯示 Default login user ，用以提醒使用
+者預設的登入帳號為何。該訊息會隨著作業系統的不同，而有差異。
+● 選擇虛擬主機樣板（硬體類別及規格）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page14_img27.png）
+● （選擇性）如需新增第二顆磁碟點選＂ + Add Volume ＂增加
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page14_img28.png）
+● 使用預設網路或選擇其他網路
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page14_img29.png）
+● 輸入虛擬主機認證方式： SSH 金鑰登入 ( 預設 )  或密碼登入
+○ 若僅有選取 SSH 金鑰的登入方式 ,  則後續會默認關閉密碼之登入方式。
+○ 承上，反之若僅有選擇密碼登入的方式，則後續會默認關閉 SSH 金鑰之登入方式。
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page15_img30.png）
+● 未完成部分系統提醒使用者完成相關欄位輸入
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page15_img31.png）
+● 完成必要欄位選項，開始建立虛擬主機
+○ 選擇虛擬主機建立數量
+註：若有選擇附加磁碟，則固定數量為一
+○ 輸入虛擬主機名稱
+○ 輸入虛擬主機標籤（可留空白或填入一個或多個）
+○ 輸入完畢按下 Create Instance 開始建立虛擬主機
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page16_img32.png）
+● 虛擬主機清單顯示狀態
+● 完成後狀態更新為可用（ Active ）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page16_img33.png）
+3.2  存取 Linux 虛擬主機
+3.2.1  使用介面進行存取
+● 點選虛擬主機進入虛擬主機管理頁面
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page17_img34.png）
+● 點選 Console 開立虛擬主機 console 新視窗進行主機存取
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page17_img35.png）
+3.2.2  使用 ssh  進行存取
+● 若建立虛擬機時有進行防火牆與 ssh key 的設定，則可直接使用 ssh  存取虛擬機
+註：須先進行防火牆與 IP  設定，請參考 防火牆管理 、 虛擬主機相關操作
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page18_img36.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page18_img37.png）
+3.3  建立 Windows 虛擬主機
+● 在管理選單點選 Instances,  按下 + Add Instance
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page18_img38.png）
+● 在新增虛擬主機頁面選擇映像檔與作業系統版本
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page19_img39.png）
+● 選擇虛擬主機樣板（硬體類別及規格）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page19_img40.png）
+● （選擇性）如需新增第二顆磁碟點選＂ + Add Volume ＂增加
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page19_img41.png）
+● 使用預設網路或選擇其他網路
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page19_img42.png）
+● 虛擬主機認證方式：提供密碼登入方式，可提供 SSH Key 作為忘記密碼的驗證方式
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page20_img43.png）
+● 未完成部分系統提醒使用者完成相關欄位輸入
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page20_img44.png）
+● 完成必要欄位選項，開始建立虛擬主機
+○ 選擇虛擬主機建立數量
+註：若有選擇附加磁碟，則固定數量為一
+○ 輸入虛擬主機名稱
+○ 輸入虛擬主機標籤（可留空白或填入一個或多個）
+○ 輸入完畢按下 Create Instance 開始建立虛擬主機
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page21_img45.png）
+● 虛擬主機清單顯示狀態
+● 完成後狀態更新為可用（ Active ）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page21_img46.png）
+3.4  存取 Windows 虛擬主機
+以下為 Windows  登入時的帳號與用途列表
+Account \ Windows Windows 10/11 (other user) Windows Server
+cloud-user 通常使用此帳 戶 登入做一般使用， 使用的密碼為當初建立此 VM  時 設定的密碼
+通常使用此帳 戶 登入做一般使用， 使用的密碼為當初建立此 VM  時 設定的密碼
+Recovery 1.  用於 CMP  重新取回密碼
+1.  用於 CMP  重新取回密碼
+2.  用於回答相關問題取回密碼
+註：不提供回答問題取回密碼
+Administrator ❌ 第一次登入時會請您重設密碼，請 點選取消，日後其他帳 戶 無法使用 時，可使用此帳 戶 重設密碼登入。
+3.4.1  使用介面進行存取
+● 點選虛擬主機進入虛擬主機管理頁面
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page22_img47.png）
+● 點選 Console 開立虛擬主機 console 新視窗進行主機存取
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page23_img48.png）
+● 第一次登入點選右上方 CtrlAltDel 鍵並於視窗點擊 Sign in
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page23_img49.png）
+● 帳號為 Cloud-user  並輸入 CMP 設定的密碼登入
+● 開始使用 Windows 虛擬主機
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page24_img50.png）
+● 請於第一次登入 Windows  作業系統後執行 Windows Update  以確保系統處理最新安全狀
+態。
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page24_img51.png）
+3.4.2  使用 rdp  工具進行存取
+● 點選 Add PC
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page25_img52.png）
+● 輸入 IP Address  後點選 Add ，若需自定義名稱可輸入 Friendly name
+註：須先進行防火牆與 IP  設定，請參考 防火牆管理 、 虛擬主機相關操作
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page25_img53.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page25_img54.png）
+● 雙擊點選該 PC
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page26_img55.png）
+● 輸入帳號密碼後點選 continue  繼續
+註：預設帳號為
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page26_img56.png）
+● 點選 continue  繼續
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page27_img57.png）
+● 登入成功
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page27_img58.png）
+3.5  管理虛擬主機
+3.5.1  虛擬主機相關操作
+● 可於虛擬主機頁面 (Instance)  點選可用的虛擬主機進行相關操作
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page28_img59.png）
+● 可從右方快速選單進行虛擬主機常用功能
+○ Access console:  存取虛擬主機 console （僅虛擬主機擁有者可存取）
+○ Enable floating IP:  啟 用浮動位址
+○ Reboot:  重新開機
+○ Power on:  開機
+○ Power off:  關機
+○ Power cycle 重置虛擬主機（ Hard Reboot ）
+○ View usage:  觀察使用率
+○ Modify Lifecycle:  更改資源可被使用的期限
+○ Commit to app image:  將虛擬主機轉成客製化的 image ，可在 application  做使用
+註：只有 project admin  可以做此操作， project member  不會看到此項目，並且只能
+Commit  自己的虛擬機
+○ Destroy:  刪除虛擬主機
+● 也可於資源總攬頁面 (Summary -> Overview)  點選虛擬主機進行各項操作
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page29_img60.png）
+3.5.2  虛擬主機總覽 Summary
+● 於 Summary -> Overview  頁面瀏覽並搜尋虛擬主機
+○ Name:  虛擬主機名稱（含規格及作業系統資訊）
+○ Keypair:  虛擬主機對應金鑰（若為指定認證方式）
+○ Interface IP:  網路位址
+○ Floating IP:  浮動位址（若有設定）
+○ Tags:  標籤（若有指定，可為一或多個）
+○ Owner:  擁有者（專案管理者可 查 看所有成員虛擬主機、一般使用者 查 看個人虛擬主
+機）
+○ Expire:  資源到期剩餘時間
+○ Created:  建立時間
+○ Status:  狀態
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page30_img61.png）
+3.5.3  資源管理
+● 於 Graph 分頁 查 看虛擬主機資原使用狀態，可透過下拉式選單調整時間間隔
+● Graph 分頁需由 Instances 列表中，點擊目標虛擬機後進入。例如：下方灰色反白處的虛擬
+機，代表游標已移至上方，接著僅需點選即可。
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page30_img62.png）
+● 虛擬機資源報表包括
+○ CPU Usage: CPU 使用情形
+○ Memory usage:  記憶體使用情形
+○ Bandwidth:  網路流量
+○ Disk I/O:  硬碟讀寫量
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page31_img63.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page31_img64.png）
+3.5.4  資源使用批准與到期管理 Request
+平台管理者可設定一般使用者在建立資源時是否需要專案管理者的批准，一般使用者
+可提出資源到期的時間，專案管理者有權限設定資源的到期時間。
+註：資源使用批准預設為不須批准，如有需求可洽平台管理者
+3.5.4.1  一般使用者資源申請
+● 一般使用者可於創建資源時 說 明資源使用的原因與需要使用的期限。亦可由 Instance 清
+單中點選 Modify Lifecycle 項目進入 Resource Renewal 設定找到如下畫面。
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page32_img65.png）
+● 可於該資源頁面看見此資源的狀態 (status)  為 Requesting
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page32_img66.png）
+● 可於 Request  頁面中的 Create Resources  查 看現有的 Request
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page33_img67.png）
+● 若被專案管理者批准則會直接建立該資源。
+若被專案管理者拒 絕 則會呈現 reject  狀態，須點選該資源做 remove 。
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page33_img68.png）
+3.5.4.2  一般使用者延長資源使用期限申請
+● 一般使用者可於該資源頁面點選 expire  ，申請延長資源使用期限
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page34_img69.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page34_img70.png）
+● 申請過後 expire  的圖像會改變，代表正在申請延長使用權限
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page35_img71.png）
+● 也可從 Request  頁面的 Renew Resources  中看到正在申請延長使用時間的資源
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page35_img72.png）
+3.5.4.3  專案管理者資源申請管理
+● 專案管理者可於該資源頁面審核一般使用者的資源使用申請
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page36_img73.png）
+● 專案管理者可於 Requests  的 Create Resources  頁面審核一般使用者的資源使用申請，
+批准後會創建該資源
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page36_img74.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page37_img75.png）
+註：於 Request  頁面點擊該資源項目或是點擊 Review Request  都可以
+3.5.4.4  專案管理者延長資源使用期限管理
+● 專案管理者可於該資源頁面審核一般使用者延長資源使用期限的請求
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page37_img76.png）
+註：申請中的 expire  會以圖章來表示
+● 專案管理者可於 Request  的 Renew Resources  頁面審核一般使用者延長資源使用期限
+的請求
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page38_img77.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page38_img78.png）
+3.5.5  電源管理
+● 切換至 Power 分頁進行電源管理工作
+○ 開 啟 ／關閉虛擬主機
+○ 重新 啟 動虛擬主機
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page39_img79.png）
+3.5.6  虛擬主機磁碟管理 Volume
+● 於 Volume 分頁新增磁碟，掛載至虛擬主機
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page39_img80.png）
+○ 按＋Ａ dd Volume 新增磁碟
+註：掛載後的硬碟需於作業系統 內 進行格式化
+3.5.7  重新調整虛擬主機資源
+● 切換至 Resize 頁面可進行資源調整
+○ 須關閉虛擬主機
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page40_img81.png）
+3.5.8  管理虛擬主機網路
+● 於 Networking 頁面進行網路調整，可於此頁面進行指定外部網路位址（ Floating IP ）
+○ Enable 指定外部網路位址
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page40_img82.png）
+○ Disable 取消指定外部網路位址
+● 於 Firewalls 點選 Edit 編輯並指定虛擬主機專用防火牆
+○ 切換至 Networking 頁面
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page41_img83.png）
+● 可新增或點選現有防火牆政策指定虛擬主機套用防火牆規則
+○ 請參 閱 防火牆管理
+● 選擇現有防火牆政策
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page41_img84.png）
+● 套用至虛擬主機
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page42_img85.png）
+3.5.9  快照功能 Snapshot
+● 切換至 Snapshots 頁面做虛擬主機快照與還原功能
+○ 如需動態 產 生快照虛擬主機需安裝 qemu-guest agent
+註 1 ：本案的 image  皆已安裝 qemu-guest agent  ，不需另外安裝
+註 2 ：若有需安裝 Qemu Agent  ，可點擊「 enable qemu-guest-agent 」，到 Bigstack  官方
+文件找「 Install Qemu Agent 」來安裝 Qemu Agent
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page43_img86.png）
+● 還原快照（需先關閉虛擬主機）
+● 選擇快照進行還原
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page43_img87.png）
+● 等待快照還原
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page44_img88.png）
+● 還原完成
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page44_img89.png）
+註：快照功能會將掛載的硬碟一起拍攝快照
+3.5.10  排程備份功能 Backup
+● 於 Backups 分頁進行虛擬主機備份工作
+○ 可 啟 用備份工作
+○ 可指定排程
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page44_img90.png）
+註 :  備份映像檔至多僅保存五份。抵達五份的上限後，會於下一次備份時，移除時間順
+序上最舊之備份映像檔。
+● 啟 用備份建立虛擬主機備份
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page45_img91.png）
+● 建立完成
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page45_img92.png）
+註：排程備份功能會將掛載的硬碟一起備份
+3.5.11 刪除虛擬主機
+● 於 Destroy 分頁刪除虛擬主機及相關資料
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page46_img93.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page46_img94.png）
+註：刪除虛擬機後相關的硬碟仍會保留，因為該 volume  的資料可能尚被需要
+3.6  管理虛擬磁碟
+● 於專案左方功能選單點選 Volumes  進行管理
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page47_img95.png）
+● 選擇容量及待掛載之虛擬主機，填入磁碟名稱後按下 Create Volume 建立
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page47_img96.png）
+● 透過事件通知確認磁碟完成建立及掛載
+● 於虛擬主機 查 看新磁碟掛載狀況
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page48_img97.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page48_img98.png）
+● 於虛擬主機系統 內 確認磁碟狀態
+註：磁碟 查 看方式因作業系統而易，上述範例為 Linux 作業系統
+3.7  管理檔案分享
+● 於專案左方功能選單點選 Share 建立檔案資源共享
+● 點選 Create Share 開始新增
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page48_img99.png）
+● 選擇協定、權限（預設為可讀寫）、大小（支援 NFS 及 CIFS ）、輸入名稱後，開始建立
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page49_img100.png）
+● 完成建立
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page49_img101.png）
+● 點選檔案分享取得分享連結（ NFS Export 或 CIFS 分享連結）
+● 亦可修改存取規則管理分享資源
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page50_img102.png）
+3.8  管理網路資源
+網路資源管理分浮動位址、防火牆管理及負載平衡應用，可依據專案實際需求動態調
+整。
+3.8.1  浮動位址管理
+● 於專案左方功能選單點選 Networking 切換至網路管理，進入 Floating IPs 分頁
+● 上方選單可用於動態指派浮動位址至特定虛擬主機
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page50_img103.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page51_img104.png）
+● 下方選單顯示已保留之浮動位址，可依需求釋放或提供使用者指定浮動位址套用至虛
+擬主機
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page51_img105.png）
+● 請於使用浮動位址時確認作業系統保有最新安全更新、或透過防火牆機制設定可存取
+來源位址（請參 閱 防火牆管理 ） ，確認透過遠端執行服務之安全無虞。
+3.8.2  防火牆管理
+3.8.2.1  新增防火牆
+● 於專案左方功能選單點選 Networking 切換至網路管理，進入 Firewalls 分頁管理虛擬主機
+防火牆
+● 點選＋ Add Firewall 新增防火牆
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page52_img106.png）
+● 輸入名稱及描述並建立一筆或多筆規則
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page52_img107.png）
+● 選擇協定（或自訂協定）及來源白名單（ IP 範圍），按下 Create Rule 完成建立．可建立多筆
+規則
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page53_img108.png）
+● 套用防火牆至指定虛擬主機，可選擇單台或多台，完成後按下 Create Firewall 建立防火牆
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page53_img109.png）
+● 完成建立
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page54_img110.png）
+● 亦可由現有防火牆進行增減規則及更改套用虛擬主機
+● 點選防火牆於 Rules 分頁修改或增減規則
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page54_img111.png）
+3.8.2.2  專案斷網功能
+● 專案管理者可於必要時關閉所有對外網路
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page55_img112.png）
+3.8.2.3  限制對外連線功能
+● 專案管理者可以透過設定 project outbound rule 來限制專案資源對外連線的目標，也就
+是控制哪些外部網路是可以連線的對象。
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page55_img113.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page56_img114.png）
+3.8.3  負載平衡服務
+● 於專案左方功能選單點選 Networking  切換至網路管理，進入 Load Balancers  分頁管理虛
+擬主機負載平衡服務
+● 點選＋ Add  新增負載平衡服務
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page56_img115.png）
+● 選擇服務協定及外部埠號、及相對應虛擬主機服務協定及埠號，支援協定包含
+○ HTTP
+○ HTTPS
+○ TCP
+○ UDP
+註：外部服務與虛擬主機應用協定具關聯性，於介面選擇時動態連動，如外部使用
+HTTPS 服務虛擬主機服務僅可選擇 HTTPS 或 HTTP
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page57_img116.png）
+● 完成指定外部服務、埠號及對應之虛擬主機服務應用
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page57_img117.png）
+● 於 Instances 欄位 ,  先選擇 resource owner ( 註 : project-admin  的角度 ,  可以檢視專案下所有
+人 ,  以及其對應虛擬機 .  但 project-member  僅能檢視與選擇到自己 )
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page57_img118.png）
+● 再於後方選擇 resource owner  欲提供應用之虛擬主機
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page58_img119.png）
+● 服務應用之虛擬主機需開 啟 防火牆設定，請參考 防火牆管理
+○ 防火牆規則套用對象為服務提供之虛擬主機
+○ 允許存取 IP 為 192.168.0.0/24 （虛擬主機專用網路，提供負載平衡器透過私有網路傳
+送）
+● 可針對其他服務新增多比規則，完成輸入負載平衡服務名稱並儲存完成設定
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page58_img120.png）
+● 等待負載平衡器建立完成並與提供服務之虛擬主機界接
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page58_img121.png）
+● 完成設定並透過下圖中的 Enable floating IP  按紐 ,  取得外部服務位址（ Floating IP ）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page59_img122.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page59_img123.png）
+● 開始使用負載平衡服務
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page59_img124.png）
+3.8.3.1  負載平衡服務的進階選項
+針對各服務協定，可調整前端連線 (frontend) 或後段連線 (backend) 的逾時時間 值 ，以符
+合實際需求。如：作為 SSH 連線轉埠服務可增加逾時時間維持連線。
+針對 HTTP/HTTPS ，也提供加入 HTTP header 選項如： X-Forward-For
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page60_img125.png）
+另外，每個服務皆可設置白名單限定外部存取服務，名單建立以 CIDR 形式，可以為多組
+網路。
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page60_img126.png）
+● Member Data Timeout (seconds) ：負載平衡服務至後端主機的連線資料時間，預設為 50
+秒、可設定 值 為 0 至 2073600 （ 24 天），可依據實際需求調整。
+● Client Data Timeout (seconds):  用 戶 端至負載平衡服務的連線資料時間，預設為 50 秒、可
+設定 值 為 0 至 2073600 （ 24 天），可依據實際需求調整。
+● 如需由用 戶 端調整連線逾時等設定，請參考問題排除「 排除透過負載平衡服務做轉址時
+效過短問題 」，或透過 「 負載平衡服務的進階選項調整設定 」調整設定。
+3.8.4  浮動位址管理與負載平衡服務的應用
+透過負載平衡服務 產 生的浮動位址可依據不同需求建立相對應規則，有助於浮動位址
+使用及集中（方便）管理。
+● 針對服務類別做負載平衡
+● 針對虛擬機管理做服務轉送
+註：於使用負載平衡服務時，請確認目標作業系統處於最新更新狀態。
+3.8.4.1  針對服務類別做負載平衡
+在增加不同服務虛擬機時，透過負載平衡服務以新規則指派服務轉送，可依據不同類
+別服務做各自規則管理，如附圖。
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page61_img127.png）
+● 規則建立方式請參考 「 負載平衡服務 」
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page61_img128.png）
+3.8.4.2  針對虛擬機管理做服務轉送
+如需求為透過外部網路存取 內 虛擬主機做管理用途，亦可透過負載平衡服務以單一規
+則管理單一虛擬主機方式設定，如附圖。
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page62_img129.png）
+● 透過負載平衡規則亦可檢視各虛擬主機存取及對應方式
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page62_img130.png）
+● 以不同埠號分別存取管理虛擬主機
+● 如遇有過快逾時的問題請參考問題排除「 排除透過負載平衡服務做轉址時效過短問題 」
+，或透過 「 負載平衡服務的進階選項 」，來設定延長 timeout 值
+3.9  映像檔匯入及虛擬主機匯出
+在映像檔選單頁面，除了可以對虛擬機快照及備份進行相關操作，如建立或還原虛擬
+機，還可以根據使用者的需求上傳映像檔進行匯入，以供後續開 啟 自訂的虛擬機做使用。此
+外，在運行的虛擬機選單中也提供了匯出功能，可讓使用者將虛擬機匯出以便轉移至其他
+平台，或者下載至用 戶 端，作為異地備份的用途。
+3.9.1  映像檔匯入
+● 點選 Images 選單並切換至 Custom Images 分頁
+● 已完成上傳匯入之映像檔會列於清單中
+● 按下 Upload Image 選擇用 戶 端之映像檔案
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page63_img131.png）
+● 按下 Add 選擇用 戶 端檔案並確認
+● （選擇性）輸入映像檔描述
+● （選擇性）輸入標籤
+● 完成按下 Upload 開始上傳
+註：上傳需擬磁碟格式需為 vmdk, qcow2 或 img 檔案，且為可開機磁碟。
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page64_img132.png）
+● 檔案上傳進度顯示， 100% 上傳完成後開始轉檔匯入；使用者可於任何時候取消上傳。
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page64_img133.png）
+● 上傳完成進行轉檔作業
+註：映像檔匯入時間取決於虛擬磁碟大小，實際完成時間約 30 分鐘至一小時不等。
+● 完成後可指定映像檔開 啟 新的虛擬主機
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page65_img134.png）
+● 亦可由新增虛擬主機時選擇 Custom Image 指定映像檔
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page65_img135.png）
+3.9.2  虛擬主機匯出
+● 點選指定虛擬主機進行匯出作業
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page66_img136.png）
+● 切換至 Image Export 分頁
+● 點擊 Export 按鍵， CMP 會把虛擬機的硬碟轉成檔案
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page66_img137.png）
+● 按下 Export 確認開始進行虛擬主機匯出作業；或按 Cancel 取消離開
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page67_img138.png）
+● 開始進行虛擬主機匯出作業
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page67_img139.png）
+註：
+1.  虛擬主機匯出包含格式轉換、壓縮等相關流程，執行時間因磁碟大小及數量而異，實際完
+成時間約一小時或以上。
+2.  磁碟大小超過 200GB 無法做虛擬主機匯出作業，匯出檔案格式為 vmdk 且保留天數為一週。
+● 完成後可下載至用 戶 端做後續用途
+● 匯出映像檔超過七天即無法下載，系統亦不保留
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page68_img140.png）
+3.10  資源使用警報閾 值 設置 Alert
+此頁面用來設定當某一資源的使用量到達設定閾 值 時，會向管理者提出警告。
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page68_img141.png）
+註：此頁面只有專案管理者可以操作
+3.10.1  設定閾 值
+● 可設定閾 值 ，當資源使用量達到此閾 值 時會通知管理者
+註：當資源達到 100%  也會通知管理者
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page69_img142.png）
+● 可設定通知頻率，即要不要通知
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page70_img143.png）
+3.10.2  面板操作
+● 可依據名稱搜尋項目
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page70_img144.png）
+● 可依據分類過濾項目
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page71_img145.png）
+● 可於工具提示 查 看 說 明
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page71_img146.png）
+3.11  還原 Cube Windows  虛擬主機密碼 Retrieve password
+還原 CUBE windows  虛擬主機密碼，根據 window 版本的不同有下列幾種方法：
+Account \ Windows Windows 10/11 (other user) Windows Server
+cloud-user 使用 CMP  設定的密碼 使用 CMP  設定的密碼
+Recovery 1.  可使用 CMP Retrieve password 來取得密碼
+1.  可使用 CMP Retrieve password 來取得密碼
+2.  於輸入密碼錯誤時，輸入三個答 案來重設密碼
+註：不提供輸入三個答案取得密碼
+註：通常依然是使用 CMP Retrieve password  來取得密碼，只有在此 方法不能使用時才使用第二種「輸 入三個答案」的方式來取得密碼
+Administrator ❌ 第一次登入時會請您重設密碼，請 點選取消，日後其他帳 戶 無法使用 時，可使用此帳 戶 重設密碼登入。
+3.11.1  還原 Windows 10/11  虛擬主機密碼
+3.11.1.1 使用 retrieve password
+● 點選 retrieve password
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page72_img147.png）
+● 填入當初建立此虛擬主機所使用的 ssh private key
+● 點選 retrieve password
+● 會得到 Windows password
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page73_img148.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page73_img149.png）
+● 將所得到的 password  輸入到 Recovery  ，登入後即可重設 windows  的帳號
+註：登入後如何重設密碼請見 使用還原帳號重設 windows 虛擬主機密碼
+3.11.1.2 使用 reset password
+● 使用 recovery  的帳號點選 reset password
+註： Reset passwrod  輸入密碼錯誤時會出現
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page74_img150.png）
+● 輸入三個 Security Answer  的答案
+註：三個問題答案請洽系統管理員。
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page75_img151.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page75_img152.png）
+● 系統提示輸入新密碼
+● 重複輸入兩次密碼後登入
+註：登入後如何重設密碼請見 使用還原帳號重設 windows 虛擬主機密碼
+3.11.2  還原 Windows Server 2019/2022  虛擬主機密碼
+3.11.2.1 使用 retrieve password
+● 點選 retrieve password
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page76_img153.png）
+● 填入此虛擬主機的 ssh private key ，點選 retrieve password  ，會得到 Windows password
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page76_img154.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page77_img155.png）
+● 將所得到的 password  輸入到 Recovery  ，登入後即可重設 windows  的帳號
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page77_img156.png）
+3.11.2.2 使用 Administrator  來取得密碼
+● 第一次登入時可重設密碼
+● 點選 OK  來重設密碼
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page78_img157.png）
+● 輸入兩次密碼
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page78_img158.png）
+● 點擊下一步
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page79_img159.png）
+● 點選 OK
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page79_img160.png）
+● 完成登入
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page80_img161.png）
+註：登入後如何重設密碼請見 使用還原帳號重設 windows 虛擬主機密碼
+3.11.3  使用還原帳號重設 windows 虛擬主機密碼
+● 以還原用帳號登入後，切換至控制台
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page81_img162.png）
+● 選擇使用者帳號管理
+● 點選更改帳 戶 類型
+● 選擇 cloud-user 更改密碼
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page82_img163.png）
+● 輸入兩次新密碼、按下變更密碼完成變更
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page82_img164.png）
+● 登出還原用帳號並重新以原使用者登入
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page83_img165.png）
+● 以新密碼重新登入並繼續使用系統

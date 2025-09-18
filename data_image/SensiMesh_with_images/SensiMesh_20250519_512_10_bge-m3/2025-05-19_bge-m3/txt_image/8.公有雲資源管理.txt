@@ -1,0 +1,96 @@
+8  公有雲資源管理
+公有雲資源經由平台管理者（或經開放之租 戶 管理者），目前提供 AWS 公有雲支援。
+8.1  租 戶 管理者建立或修改 Cloud Provider 認證
+透過平台管理者可將使用者介面的 Cloud Provider 認證 啟 用，專案管理者登入後切換至
+Management > Cloud Providers 設定是否 啟 用公有雲並對認證做更新、修改或刪除等管理。
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page148_img283.png）
+8.2  切換至公有雲資源管理
+切換 Cloud Provider 至 AWS 後可管理公有雲資源，建立虛擬步驟與本地資源一致。
+● 於 Cloud Providers 下切換至公有雲資源（本地資源為 CUBE ）
+8.3  建立虛擬主機
+● 切換至 aws cloud providers
+● 建立新 instance
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page149_img284.png）
+● 選擇區域與印像檔
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page149_img285.png）
+● 選擇規格
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page150_img286.png）
+● 設定密碼或 ssh
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page150_img287.png）
+● 設定 instance  名稱與 tag
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page150_img288.png）
+● 點選建立創建
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page151_img289.png）
+● 創建完成
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page151_img290.png）
+8.4  管理虛擬磁碟
+● 建立新硬碟，點選 Add Volume  或 Create Volume
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page152_img291.png）
+● 選擇規格、掛載的虛擬機，輸入名稱後，點選建立
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page152_img292.png）
+● 建立完成
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page153_img293.png）
+● 確認有新增此硬碟
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page153_img294.png）
+8.5  管理網路資源
+網路資源管理與本地服務一致，浮動位址 (non-reserved) 在 AWS 虛擬主機建立時即 產 生，
+透過浮動位址管理可建立保留用位址 (reserved) 供後續使用。
+8.5.1  浮動位址管理
+● 在下拉選單選擇虛擬主機，點擊 Reserve and Assign Floating IP
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page154_img295.png）
+● 申請的 FIP  成功綁定虛擬主機
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page154_img296.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page155_img297.png）
+8.5.2  防火牆管理
+同理 Cube provider  的防火牆管理。
+● 新增防火牆，先點擊 Add Firewall
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page155_img298.png）
+● 標示名稱
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page156_img299.png）
+● 建立規則
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page156_img300.png）
+● 輸入允許的連線 (0.0.0.0/0  代表不限制 IP  拜訪 )
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page157_img301.png）
+● 選擇套用的虛擬機並建立
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page157_img302.png）
+● 完成建立
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page158_img303.png）
+可於防火牆頁面或是虛擬機頁面確認有成功套用防火牆
+● 點擊防火牆，可展開防火牆訊息
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page158_img304.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page159_img305.png）
+● 可確認套用之虛擬機，也可新增套用之虛擬機
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page159_img306.png）
+● 可於虛擬機確認所套用的防火牆
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page160_img307.png）
+8.6  建立 Kubernetes 叢集
+● 在管理選單點選 Kubernetes,  按下 + Add Cluster
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page160_img308.png）
+8.6.1 Kubernetes 版本與網路設定
+● 選擇公有雲 Region
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page161_img309.png）
+● 選擇 Kubernetes 版本
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page161_img310.png）
+● 選擇網路（預設 Kubernetes 網路）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page161_img311.png）
+註：僅提供指定版本及專用網路
+8.6.2  選擇容量與節點池
+● 設定節點池與節點數量
+○ 預設建立 master  與 worker  節點池
+○ 預設叢集節點於各節點池為 1  節點
+○ 可另行設定節點數量
+○ 可設定節點角色
+○ 可另行增加節點池
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page162_img312.png）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page162_img313.png）
+8.6.3  開始建立叢集
+● 輸入叢集名稱
+● 輸入叢集標籤（可留空白或填入一個或多個）
+● 輸入完畢按下 Create Cluster 開始建立叢集
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page163_img314.png）
+8.6.4  完成叢集建立
+● Kubernetes 叢集清單顯示狀態
+● 完成後狀態更新為可用（ active ）
+（見圖：./pdf_embed/SensiMesh_with_images/SensiMesh_20250519_512_10_bge-m3/2025-05-19_bge-m3/images/page163_img315.png）
+管理 Kubernetes 叢集與進階使用操作叢集可參考 「 管理 Kubernetes 叢集 」 與「 進階使用操
+作叢集 」，除 Kubernetes 建立於不同雲服務提供外，相關操作皆一致。

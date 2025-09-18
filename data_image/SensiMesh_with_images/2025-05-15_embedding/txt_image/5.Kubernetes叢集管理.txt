@@ -1,0 +1,257 @@
+5 Kubernetes  叢集管理
+5.1  建立 Kubernetes 叢集
+● 在管理選單點選 Kubernetes,  按下 + Add Cluster
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page99_img183.png）
+5.1.1 Kubernetes 版本與網路設定
+● 選擇 Kubernetes 版本
+● 選擇網路
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page99_img184.png）
+註：僅提供指定版本及專用網路
+5.1.2  選擇容量與節點池
+● 設定節點池與節點數量
+○ 預設建立 master 與 worker 節點池
+○ 預設叢集節點於各節點池為 1 節點
+○ 可另行設定節點數量
+○ 可設定節點角色
+○ 可另行增加節點池
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page100_img185.png）
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page100_img186.png）
+5.1.3  開始建立叢集
+● 輸入叢集名稱
+● 輸入叢集標籤（可留空白或填入一個或多個）
+● 輸入完畢按下 Create Cluster 開始建立叢集
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page101_img187.png）
+5.1.4  完成叢集建立
+● Kubernetes 叢集清單顯示狀態，完成後狀態更新為可用（ active ）
+5.2  管理 Kubernetes 叢集
+● 點選 Kubernetes 叢集進入叢集管理頁面
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page102_img188.png）
+5.2.1  檢視叢集與 config 下載
+● 於 Overview  分頁檢視叢集基本資訊
+● 點選 Download Kubeconfig  下載 Kubeconfig  檔案
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page102_img189.png）
+● 下載 kubeconfig 並存於本機（格式為 YAML ）
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page103_img190.png）
+● 透過下載之 Kubeconfig 進行叢集相關操作
+例：： kubectl–kubeconfig=k8s-v21.yaml cluster-info  取得叢集資訊
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page103_img191.png）
+5.2.1.1  透過 YAML 範本建立
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page103_img192.png）
+● 可參 閱 Kubernetes 相關文件取得 YAML 範本
+● 亦可由 Advanced Dashboard 取得範本 內 容，請參考「 建立 workload 範本 」
+● 可修改範本符合實際需求並透過 kubectl 套用範本建立 workload 、負載平衡器等其他相關
+操作
+○ 如： kubectl apply -f nginxweb.yaml –validate=false
+● 完成後可透過 kubectl 取得相關資訊
+○ 如：負載平衡器之對外 IP 位址
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page104_img193.png）
+5.2.2  叢集資源調整
+● 於 Node 分頁調整節點資源（ Resize ）
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page105_img194.png）
+● 點選節點池右方選單、選擇 resize 增加節點數量
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page105_img195.png）
+● 調整節點數量並按下儲存完成調整節點資源工作
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page106_img196.png）
+● 完成叢集資源調整
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page106_img197.png）
+5.2.3  叢集資源監控
+● 點選叢集 Insights 分頁 查 看目前資源使用狀態
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page107_img198.png）
+● 可透過下拉式選單調整時間間隔，針對 CPU/Memory/Pods 做進一步資源監控
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page107_img199.png）
+5.3  使用 Marketplace
+本章節會以 Rancher-monitoring  做示範。
+● 點擊需要的 app ，
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page108_img200.png）
+● 點選 Configure
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page108_img201.png）
+● 選則要套用的 Cluster  並點選 install
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page109_img202.png）
+● 到該 cluster  的 app  頁面可檢視安裝結果
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page109_img203.png）
+● 進入 Dashboard  頁面可使用該 app
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page110_img204.png）
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page110_img205.png）
+註：若安裝失敗，注意安裝的 app  是否有規格要求
+5.4  進階使用操作叢集
+● 點選叢集管理右上方 ”Advanced Dashboard” 可開 啟 進階管理功能，透過新分頁進行管理
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page111_img206.png）
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page111_img207.png）
+註：透過進階選單下載之 kubeconfig 檔案可能有憑證或權限不符問題，請參考 「 透過
+Kubernetes 進階介面下載之 kub e confi g 有憑證問題 」，下載符合使用者權限之 kubeconfig 檔案
+，或透過額外參數使用該 kubeconfig 。
+5.4.1  建立 workload 與負載平衡器
+以下以透過 Advanced Dashboard 頁面建立 nginx + HTTP 負載平衡器為例。
+● 點選 Workload > Deployments
+● 按下右上方 Create 按鈕
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page112_img208.png）
+● 輸入必要欄位
+○ Name: nginxlb
+○ Container Image: nginx
+● 按下 Add Port 新增負載平衡器
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page112_img209.png）
+● 輸入必要欄位
+○ Service Type: Load Balancer
+○ Private Container Port: 80
+○ Protocol: TCP
+○ Listening Port: 80
+● 完成按下 Create 開始建立
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page113_img210.png）
+● Workload 開始建立
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page113_img211.png）
+● Workload  完成建立
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page114_img212.png）
+5.4.2  使用 workload 與負載平衡器
+● 檢視 workload  狀態，建立完成為 Active
+● 確認附載平衡器建立完成
+○ Endpoints  狀態更新
+● 點選 workload
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page114_img213.png）
+● 點選 Endpoint: 80/TCP  開 啟 連結
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page114_img214.png）
+註： Endpoints 於建立完成後更新，可於完成後透過網頁重整（ refresh ）確認
+● 確認連線成功
+5.4.3  建立 workload 範本
+● 於 Advanced Dashboard 建立 workload 時，可切換至 YAML 模式並將 內 容另從為 YAML 範本
+供 kubectl 或其他 k8s 操作介面、工具使用，請參考 「 透過 YAML 範本建立 workload 」
+註：範本不包含使用者身分認證資料
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page115_img215.png）
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page115_img216.png）
+● 於 YAML 模式下編輯複製佈署 內 容
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page116_img217.png）
+● 並可透過外部編輯器另存為 YAML 範本
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page116_img218.png）
+5.4.4  建立需開 啟 TTY 之 workload
+建立 ubuntu workload 並掛載 PVC
+● 點選 Workload > Deployments
+● 按下右上方 Create  按鈕
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page117_img219.png）
+● 輸入需開 啟 STDIN 及 TTY 之 container  如 ubuntu
+○ Name
+○ Container Image: ubuntu
+○ StdIn: Yes
+○ TTY: Checked
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page118_img220.png）
+● 點選 Pod Storage  並選擇 Create Persistent Volume Claim
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page118_img221.png）
+● 輸入名稱，選擇 Single-Node Read/Write  ，輸入所需容量大小
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page119_img222.png）
+● 回到 container-0  ，點選 Storage  ，選擇剛剛制定的 PVC
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page119_img223.png）
+● 輸入掛載的路徑後，點選 Create
+● 創建完成
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page120_img224.png）
+● 點選 Execute Shell
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page120_img225.png）
+● 可進入 pod  進行操作，確認所掛載的 PVC ，可讀寫檔案亦可檢視其他 pod 建立之檔案
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page120_img226.png）
+5.4.5  使用 ingress controller 管理服務
+● 透過 ingress 實現單一端口（ port ）依據路徑對應至多個服務，簡化管理服務工作，結合
+ingress controller 達到負載平衡服務需求
+● 每個 Kubernetes 叢集預設即有 ingress-controller 可供 ingress 規則使用，需另行建立負載平
+衡服務提供外部存取使用
+5.4.5.1  建立負載平衡服務連動 ingress-controller
+以下為透過 Advanced Dashboard 頁面建立負載平衡服務提供外部服務。
+● 切換至 ingress-nginx namespace
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page121_img227.png）
+● 點選 Service Discovery -> Services
+● 按下右上方 Create 按鈕
+● 選擇 Load Balancer
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page122_img228.png）
+● 於 Namespace 選擇 ingress-nginx 、輸入負載平橫服務名稱 (Name)
+註：若沒有此選項請點選 Create namespace  並輸入 ingress-nginx
+● 於 Service Port  輸入必要欄位：名稱（ Port Name ），外部端口（ Listening Port ）、 內 部端口（
+Target Port ）
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page122_img229.png）
+● 於 Selectors  填寫對應的 Key  與 Value
+○ Key: app
+○ Value: ingress-nginx
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page123_img230.png）
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page123_img231.png）
+● 點選 Create  建立服務
+● 等待服務建立，完成後 產 生對應 Service Port  之連結
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page124_img232.png）
+● 建立完畢
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page124_img233.png）
+● 點選 443/TCP  連線
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page124_img234.png）
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page124_img235.png）
+5.4.5.2  建立與 ingress rule  整合之服務
+建立 workload 並 產 生 ingress rule 、透過負載平衡服務供外部存取
+● 切換至 User namespace
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page125_img236.png）
+● 點選 Workload > Deployments
+● 按下右上方 Create 按鈕
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page125_img237.png）
+● 輸入必要欄位
+○ Name: hello-world
+○ Container Image: bhargavshah86/kube-test:v0.1
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page126_img238.png）
+● 按下 Add Port 新增對應端口
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page126_img239.png）
+註： Namespace 可為 default 或其他可存取之 namespace
+● 輸入必要欄位
+○ Service Type: Cluster IP
+○ Private Container Port: 80
+○ Protocol: TCP
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page127_img240.png）
+● 完成按下 Create 開始建立
+● Workload 建立
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page127_img241.png）
+5.4.5.3  建立 ingress rule
+建立 ingress rule 將服務增加至外部服務存取
+● 點選 Service Discovery > Ingresses
+● 按下右上方 Create 按鈕
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page128_img242.png）
+● 選擇與服務相同之 namespace  並輸入名稱
+● 於 Rules 下輸入 /prefix 對應名稱：如 /hello
+● 選擇 Target Service ：於「 建立與 ingress rule  整合之服務 」所建立的服務
+● 選擇 Port ：服務所對應之端口
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page128_img243.png）
+● 切換至 Lables & Annotations
+● 按下 Add Annotation 建立新 Annotation
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page129_img244.png）
+● 輸入 Key  與 Value
+○ Key ： nginx.ingress.kubernetes.io/rewrite-target
+○ Value: /
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page129_img245.png）
+● 完成後按下 Create  建立規則
+● 完成建立 ingress rule
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page130_img246.png）
+●
+5.4.5.4  測試服務與 ingress rule
+● 回到 Service  列表確認服務建立狀態
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page130_img247.png）
+● 點擊 target  欄位，確認服務可使用
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page131_img248.png）
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page131_img249.png）
+5.4.6  掛載 PVC
+可於叢集建立 PVC 提供 workload deployment 間儲存空間
+5.4.6.1  建立 PVC
+● 點選 Storage > PersistentVolumeClaims
+● 按下右上方 Create  按鈕
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page132_img250.png）
+● 輸入名稱、 Storage Class 與容量大小（ GB ）
+○ Name
+○ Storage Class: Use the default class
+○ Request Storage
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page132_img251.png）
+● 點選 Create  建立 PVC
+● 建立完成
+5.4.6.2  掛載 PVC
+● 點選 Workload > Deployments
+● 點選現有 workload  右方選單，選擇 Edit Config
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page133_img252.png）
+● 在 Pod  的 Storage  中點選 Add Volume  並選擇 Persistent Volume Claim
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page133_img253.png）
+● 輸入 Volume Name  並選擇所要的 PVC
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page134_img254.png）
+● 在 container-0  的 Storage  中點選 Select Volume  並選擇剛剛設定的 Volume
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page134_img255.png）
+● 輸入掛載的路徑並點選 Save  儲存設定
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page135_img256.png）
+● 可於掛載的 Pod  確認磁碟正確掛載於指定掛載點
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page135_img257.png）
+5.5  刪除叢集
+● 於該 cluster  的 Settings 分頁，按下 Destroy  刪除 Kubernetes  叢集
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page136_img258.png）

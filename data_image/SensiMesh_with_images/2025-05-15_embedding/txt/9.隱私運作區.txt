@@ -1,0 +1,25 @@
+9  隱私運作區
+9.1  使用 Citrix  登入並使用機敏區資源
+● 輸入 User name, Password  與 Passcode
+● 取得桌面
+● 打開瀏覽器並登入使用者介面
+● 進入隱私區使用機敏區資源
+9.2  資源轉移
+9.2.1  將 instance 轉至機敏區
+● 可將開放運作區的 instance 拍成 snapshot  後， transfer  到隱私運作區使用
+● 點選 take snapshot  等快照建立好後，可點選 transfer  將 instance  轉移到隱私運作區
+● 可於隱私運作區確認轉移成功
+● 可使用 snapshot  創建 instance
+● 選擇 snapshot  並創建 instance
+● 創建完成
+9.2.2  將 application 轉至機敏區
+● 可將開放運作區的 Application transfer  到隱私運作區使用
+● 可於隱私運作區 查 看轉移來的 app
+● 選擇相應的 apps  並創建 application
+● 創建完成
+9.3  資料存取 Data Exchange Service
+Data Exchange Service ，使用者可將如安裝套件、文書編輯軟體、程式 腳 本、原始程
+式碼等透過管理及資料服務用虛擬機器以 SFTP 方式存放於儲存系統之 SSD 儲存池，並可在
+隱私運作區透過 VDI 連線至登入及資料服務虛擬機器，以相同認證方式取得 SSD 儲存池存放
+之檔案，進行後續作業，唯於隱私運作模式僅可讀取。
+更多資訊請 洽 Data Exchange Service  文件 。

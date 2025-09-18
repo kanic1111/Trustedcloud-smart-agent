@@ -1,0 +1,83 @@
+2  使用者介面登入
+專案使用者可透過使用者介面登入進行
+● 虛擬主機管理
+● K8s 叢集管理
+● 映像檔管理
+● 檔案分享管理
+● 網路管理
+並依據專案角色別顯示相關功能選單，多專案使用者亦可於不同專案間切換存取／管
+理所需資源。
+2.1  使用者介面連線方式
+使用者透過使用者介面、以 iService 帳號登入，系統依據所屬專案及角色於登入後導入
+使用者介面。
+● 以瀏覽器開 啟 使用者介面： https://portal.sensimesh.nchc.org.tw/portal
+● 於系統提示下以 iService 帳號密碼登入
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page2_img2.png）
+● 以 iService 專案帳號連線至使用者介面並依據所屬專案及角色進行操作
+● 連線至 iService 系統進行登入
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page3_img3.png）
+● 登入 iService 帳號（首次登入需輸入姓名）
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page3_img4.png）
+● 登入後可看到使用者帳號資訊並依據 iService 列出所出專案及對應角色
+○ admin
+○ member
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page3_img5.png）
+註：專案管理員需先確認 iService 上已開立相關專案
+2.2  切換專案並依據角色別存取資源
+2.2.1  切換專案並存取資源
+● 切換至具管理員角色之專案
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page4_img6.png）
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page4_img7.png）
+● 切換至一般使用者之專案
+○ 角色顯示於專案下方
+2.3  租 戶 管理者專案資源管理及權限管理
+2.3.1  資源管理
+● 租 戶 管理者可於 Summary  的 Resources  來總覽個資源的使用情形
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page5_img8.png）
+2.3.2  角色權限管理
+2.3.2.1  自定義角色權限
+● 切換至自定義角色頁面，點選新增角色
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page5_img9.png）
+● 填入自定義資料
+○ 填入角色名稱
+○ 勾選此角色可使用資源
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page6_img10.png）
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page6_img11.png）
+● 角色創建完成
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page6_img12.png）
+2.3.2.2  設定使用者角色
+● 點選下拉選單設定使用者的角色
+2.4  回到專案首頁
+在任何頁面操作下點選上方的標題，可回到專案首頁 查 看各資源使用狀況。
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page7_img13.png）
+2.5  專案活動紀錄
+● 點選 Summary -> Activity 分頁可 查 看專案資源使用活動紀錄，依據角色別顯示個人或專
+案活動紀錄
+○ 管理者檢視專案活動紀錄
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page7_img14.png）
+○ 使用者檢視個人活動紀錄
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page8_img15.png）
+2.6  事件通知
+● 管理者及使用者亦於資源活動發生時收到事件通知
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page8_img16.png）
+2.7  安全金鑰
+2.7.1 Windows 11  產 生金鑰
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page9_img17.png）
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page9_img18.png）
+● 使用者可依據使用需求存入一或多把 SSH 安全金鑰，作為虛擬主機認證用．在專案總覽
+下點選 Management > Settings 於 Securtiy 分頁建立安全金鑰
+● 點選下圖右上角的藍色 Add SSH Keys  按紐 ,  進行金鑰的新增
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page10_img19.png）
+● 可依據頁面右方操作 說 明建立安全金鑰對（ key pair ），並複製公有金鑰 內 容貼入 內 容，輸
+入名稱後完成新增金鑰。
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page10_img20.png）
+● 完成後金鑰存於系統上，為使用者專有；專案管理者無法取得
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page11_img21.png）
+2.8  使用者行為歷史紀錄
+● 使用者可透過行為歷史紀錄 查 看個人操作歷程
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page11_img22.png）
+● 專案管理者可透過使用者行為歷史紀錄 查 看專案 內 所有使用者各項存取及操作，可作
+為管理及稽核用途
+（見圖：./pdf_embed/SensiMesh_with_images/2025-05-15_embedding/images/page12_img23.png）
+註：安全金鑰不屬於任何專案，相關行為歷史紀錄可於使用者任何專案下 查 看，僅限於
+使用者個人金鑰

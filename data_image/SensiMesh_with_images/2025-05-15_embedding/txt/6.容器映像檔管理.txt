@@ -1,0 +1,28 @@
+6  容器映像檔管理
+6.1  登入容器映像檔管理庫
+● 登入方式一 :  使用瀏覽器的管理介面登入
+○ 網址 :   https://registry.sensimesh.nchc.org.tw
+○ 帳號以及密碼 :  請使用 iService  提供之主機帳號與密碼
+○ 此介面僅能用於 查 看 project  資訊 ,  無法提供 image  上傳之功能 ( 相關功能參見登入
+方式二 )
+● 登入方式二 :  使用具支援 Open Container Initiative Image 的工具 ( 以下簡稱 OCI image),  並
+搭配下方連線資訊登入國網中心的容器映像檔管理庫
+○ 網址 : registry.sensimesh.nchc.org.tw
+○ 帳號與密碼 :  請使用 iService  提供之主機帳號與密碼
+○ 範例 :  以 docker  指令為例 ,
+docker login -u <iService  主機帳號 > -p <iService  主機密碼 >
+registry.sensimesh.nchc.org.tw
+6.2  上傳容器映像檔
+● 繼登入容器映像檔管理庫後 ,  使用具支援 OCI image 的工具 ,  將本機映像檔之名稱路徑更
+改為國網中心提供的映像檔管理庫以及映像檔命名空間
+● 範例 :  以 docker  指令為例 ,  更改本機之既有容器映像檔 alpine:latest,  並進行上傳
+○ docker tag alpine:latest registry.sensimesh.nchc.org.tw/< 映像檔命名空間
+>/alpine:latest
+○ docker push registry.sensimesh.nchc.org.tw/< 映像檔命名空間 >/alpine:latest
+○ 實際提供之映像檔命名空間 ,  請洽國網中心平台管理團隊
+6.3  抓取容器映像檔
+● 繼登入容器映像檔管理庫後 ,  使用具支援 OCI image 的工具 ,  從國網中心的映像檔管理庫
+下載容器映像檔 .
+● 範例 :  以 docker  指令為例 ,
+○ docker pull registry.sensimesh.nchc.org.tw/< 映像檔命名空間 >/alpine:latest
+○ 實際提供之映像檔命名空間 ,  請洽國網中心平台管理團隊

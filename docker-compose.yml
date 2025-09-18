@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  llm-api:
+    build:
+      context: .                              
+      dockerfile: ./services/llm_api/Dockerfile
+    container_name: llm-api-v1
+    ports:
+      - "7001:7001"
+
+  vm-agent-api:
+    build:
+      context: .                              # build context 指向 project-root
+      dockerfile: ./services/vm_agent_api/Dockerfile
+    container_name: vm-agent-api-v1
+    ports:
+      - "8001:8001"
+
+  jupyter-agent-api:
+    build:
+      context: .                              
+      dockerfile: ./services/jupyter_agent_api/Dockerfile
+    container_name: jupyter-agent-api-v1
+    ports:
+      - "8002:8002"
+
+# orchestrator:
+#   build: ./orchestrator
+#   container_name: orchestrator-v1
+#   ports:
+#     - "9000:9000"
+#   depends_on:
+#     - llm-api
+#     - vm-agent-api
+#     - jupyter-agent-api

@@ -1,0 +1,194 @@
+# 容器映像檔
+
+容器映像檔服務提供私有映像檔儲存庫，透過安全可靠的管理機制、簡單好用的圖形管理介面、方便的映像檔範本並預載豐富的機器學習開發環境映像檔，協助您創建、儲存及管理容器映像檔並分享給其他專案成員使用。
+
+## 透過 Docker 指令建立映像檔
+
+:::warning
+:warning: **注意**：**先決條件**
+1. 本章節是針對有 Docker 及容器使用經驗的人所撰寫，使用本服務前請先對 [**Docker 及 容器**](https://docs.docker.com/get-started/overview/) 有基本瞭解。
+2. 請確定您的本機已安裝 Docker 並可執行 Docker CLI 命令，Docker 可安裝於 Windows、Linux 及 MacOS 環境，不同作業系統的安裝資訊可參考 [**Docker 官方文件**](https://docs.docker.com/get-docker)。
+3. 根據您的系統環境及使用者權限的不同，您可能需要在執行 Docker 命令前加上 `sudo`。
+:::
+
+
+### 1. 準備映像檔
+如果您想上傳自己的容器映像檔，請先準備映像檔。準備映像檔的方法有很多，以下說明兩種常用的方法。
+
+#### 1.1 從其他來源取得的映像檔
+從公開的映像檔儲存庫例如：[**Docker Hub**](https://hub.docker.com) 或 [**NVIDIA NGC**](https://catalog.ngc.nvidia.com/) 快速取得映像檔，以 NVIDIA NGC 上 GPU 優化的容器映像檔 [**NVIDIA CUDA**](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/cuda) 為例。
+* 在終端機視窗執行 **`docker pull nvcr.io/nvidia/cuda:11.2.0-cudnn8-devel-ubuntu20.04`** 命令取得映像檔。
+
+```
+$ docker pull nvcr.io/nvidia/cuda:11.2.0-cudnn8-devel-ubuntu20.04
+11.2.0-cudnn8-devel-ubuntu20.04: Pulling from nvidia/cuda
+d7bfe07ed847: Pull complete
+...
+Digest: sha256:1cfa79e60f22dc5567fd726e2b4e24f94e1936e98be69c25ecf8cc141907c1df
+Status: Downloaded newer image for nvcr.io/nvidia/cuda:11.2.0-cudnn8-devel-ubuntu20.04
+nvcr.io/nvidia/cuda:11.2.0-cudnn8-devel-ubuntu20.04
+```
+
+* 接著執行 **`docker images`** 命令查看映像檔，確認映像檔已下載於本機。
+```
+$ docker images
+REPOSITORY            TAG                               IMAGE ID           CREATED         SIZE
+nvcr.io/nvidia/cuda    11.2.0-cudnn8-devel-ubuntu20.04  bb0c3c0afdd8       6 weeks ago     6.93GB
+```
+#### 1.2 使用 Dockerfile 建立映像檔
+Dockerfile 是一個文字檔，用來設定映像檔的建立資訊．包含基底映像檔資訊、映像檔指令和容器啟動時的執行指令等。
+
+* 請建立一個資料夾，名稱可任取。
+```
+$ mkdir myimage
+$ cd myimage
+```
+* 使用文字編輯器中撰寫 Dockerfile
+```
+$ vi Dockerfile
+```
+
+* 貼上以下範例；或是依需求自行修改。
+```=
+FROM nvcr.io/nvidia/cuda:11.2.0-cudnn8-devel-ubuntu20.04
+CMD ["echo", "Hello World"]
+```
+
+* Dockerfile 準備好後，就可透過 **`docker build`** 命令建立映像檔，例如：
+
+```
+$ docker build -t example:v001 .
+```
+
+* 以上指令中 **-t** 代表指定映像檔的標籤，本範例指定的映像檔標籤為 **`example:v001`**，最後面的 **.** 表示 Dockerfile 在此工作目錄下。
+
+* 映像檔建立後可使用 **`docker images`** 指令，檢查映像檔是否建立成功。
+```
+$ docker images 
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+example      v001      e54c9582e997   6 weeks ago   6.93GB
+```
+:::info
+:bulb: **提示：** docker build 的用法有很多，更多資訊請參考 [**Docker 官方文件：docker build 用法及範例**](https://docs.docker.com/engine/reference/commandline/build/)。
+:::
+
+### 2. 標記欲上傳的映像檔
+準備好欲上傳的 Docker 映像檔後，接著需取得本系統容器映像檔服務提供的相關資訊，以用來標記欲上傳的映像檔。
+
+* 從服務列表選擇「**容器映像檔**」，進入容器映像檔管理頁面，接著點擊 **本地 DOCKER PUSH 映像檔命令**，再點擊 **含有本專案資訊的 Docker Tag 命令** 右側的複製圖示。
+
+
+
+* 將複製後的內容貼至本地環境．並修改括號中的內容：
+    * `docker tag`：映像檔標記命令，詳細用法可參考 [**Docker 官方文件**](https://docs.docker.com/engine/reference/commandline/tag/)。
+    * `{Source Image Name}:{Tag}`：本機的來源映像檔名稱及標籤。
+    * `{Container Registry}`：本系統的 Container Registry。
+    * `{Container Registry}/{Project ID}/{Image Name}:{Tag}`：為上傳後映像檔的 Repository:Tag，系統會自動帶出 Project ID，Image Name 和 Tag 可自行命名，若同專案已存在相同的 Image Name 或 Tag，上傳後將會取代原本的映像檔。
+
+```
+docker tag {Source Image Name}:{Tag} {Container Registry}/{Project ID}/{Image Name}:{Tag}
+```
+* 在終端機視窗執行修改後的指令，例如：
+```
+docker tag example:v001 {Container Registry}/{Project ID}/myimage:v001
+```
+
+* 再次執行 **`docker images`** 確認標記結果。
+
+:::info
+:bulb: **提示：** 同一映像檔的 IMAGE ID 會相同，IMAGE ID 可以對應多個不同的 REPOSITORY:TAG。
+:::
+
+### 3. 上傳映像檔
+* 接續前一步驟，將標記好的映像檔透過命令上傳至容器映像檔提供的 Container Registry。 
+* 上傳映像檔前需先登入本系統的 Container Registry，在終端機視窗中輸入完整的登入命令：
+
+```
+$ docker login {Container Registry}
+``` 
+
+* 首次登入需輸入您的帳號及密碼，登入成功後畫面上會出現 **Login Succeeded** 提示。
+
+```
+$ docker login {Container Registry}
+Username: 
+Password: 
+...
+Login Succeeded
+``` 
+
+* 與前一步驟相似，上傳映像檔的指令格式可從容器映像檔管理頁面中取得。
+
+
+
+* 上傳映像檔的指令格式如下：
+```
+docker push {Container Registry}/{Project ID}/{Image Name}:{Tag}
+```
+
+* 請在終端機視窗執行上傳映像檔的指令，例如：
+```
+docker push {Container Registry}/{Project ID}/myimage:v001
+```  
+* 上傳完成後，會出現 **`pushed`** 的提示訊息。
+```
+The push refers to repository [{Container Registry}/.../myimage]
+a790f937a6ae: Pushed
+v001: digest: sha256:bace9fb0d5923a675c894d5c815da75ffe35e24970166a48a4460a48ae6e0d19 size: 529
+```
+
+* 回到容器映像檔管理頁面，並進入剛剛上傳的映像檔標籤列表，點擊上方的重新整理圖示，可顯示已上傳成功的容器映像檔。
+
+
+:::info
+:bulb: **提示：** **關於映像檔大小**
+為提供更好的運作效能，系統會壓縮映像檔，所以在此顯示的映像檔大小會與本機端所看到的大小不同。
+:::
+
+:::warning
+:warning: **注意：關於容器映像檔權限** 
+* 容器映像檔為所有專案成員所共享，所有專案成員皆可讀取、編輯及删除同專案中的容器映像檔。
+* 私區中，容器映像檔僅供讀取，不可編輯及删除。
+:::
+## 使用容器映像檔
+* 成功上傳您的映像檔後，在建立容器相關服務時（例如：HPC 遠端派送），即可從 **映像檔來源** 的 **專案** 類別中選用此映像檔，並可與所有專案成員分享。
+
+## 管理容器映像檔
+* 進入容器映像檔管理頁面，可檢視容器映像檔列表、點擊欄位名稱進行排序、使用智慧搜尋、查看用量、批次刪除，或將滑鼠移至列表右側的更多選項圖示，點選 **編輯描述** 或 **删除**。
+
+（見圖:./output/image/3.可信賴雲服務/3.可信賴雲服務_3.2容器映像檔_img7.png）
+
+### 查看用量
+* 點擊管理頁面右上角的「**查看用量**」，可查看目前專案映像檔空間的已用量及配額。
+
+### 取代既有的容器映像檔
+* 進入容器映像檔的標籤列表頁面，點擊該 Push-Command 下方的複製圖示，可取得該映像檔的 Push-Command 內容。
+
+（見圖:./output/image/3.可信賴雲服務/3.可信賴雲服務_3.2容器映像檔_img4.png）
+
+* 與上傳映像檔的步驟相似，在終端機視窗執行所複製的 Push-Command 指令，即可上傳並取代相同標籤的容器映像檔。
+```
+docker push {Container Registry}/{Project ID}/myimage:v001
+```
+
+### 提取映像檔
+* 進入容器映像檔的標籤列表頁面，點擊該 Pull-Command 下方的複製圖示，並在終端機視窗執行所複製的內容，即可將此映像檔提取至本機環境。
+
+（見圖:./output/image/3.可信賴雲服務/3.可信賴雲服務_3.2容器映像檔_img5.png）
+
+### 删除容器映像檔
+* 若映像檔已不需使用，可删除以節省系統空間。
+
+#### 删除特定標籤的容器映像檔
+* 進入容器映像檔的標籤列表頁面，點擊列表右側的更多選項圖示，再點擊 **删除** 
+
+（見圖:./output/image/3.可信賴雲服務/3.可信賴雲服務_3.2容器映像檔_img6.png）
+
+#### 删除整個容器映像檔
+* 進入容器映像檔管理頁面，將滑鼠移至容器映像檔右側的更多選項圖示，再點選 **删除**。請注意：此容器映像檔與其下所有標籤的容器映像檔都會被删除。
+
+（見圖:./output/image/3.可信賴雲服務/3.可信賴雲服務_3.2容器映像檔_img7.png）
+
+#### 批次删除
+* 若想快速刪除多個資源，可點擊管理頁面右上方的「**批次删除**」。
+* 勾選欲刪除項目後點擊「確定」。

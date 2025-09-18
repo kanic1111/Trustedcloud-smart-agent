@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  qdrant:
+    image: qdrant/qdrant
+    container_name: qdrant
+    restart: always
+    ports:
+      - "${VM_HOST}:${QDRANT_PORT}:${QDRANT_PORT}"   # 從 .env 讀取，綁定 VM IP
+    volumes:
+      - "${QDRANT_STORAGE}:/qdrant/storage/collections"  # 從 .env 讀取
+    environment:
+      - QDRANT__SERVICE__HTTP_BIND_ADDR=0.0.0.0  # 容器內綁定所有介面
+    networks:
+      - llm_network
+
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    restart: always
+    ports:
+      - "${VM_HOST}:${OLLAMA_PORT}:${OLLAMA_PORT}"  # 從 .env 讀取，綁定 VM IP
+    networks:
+      - llm_network
+
+networks:
+  llm_network:
+    driver: bridge
