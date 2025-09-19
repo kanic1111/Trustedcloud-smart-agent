@@ -14,6 +14,9 @@ docker run -p 8080:8080 -d kanic1111/trusted-cloud-agent:dev   agent_main:app --
 ```
 
 **you can test the server if you enter**
-**http://<your ip address>:8080/**
+
+**http://[your ip address]:8080/**
+
 **API document in**
-**http://<your ip address>:8080/docs**
+
+**http://[your ip address]:8080/docs**
