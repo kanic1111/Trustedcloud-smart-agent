@@ -10,7 +10,7 @@ docker build -t trusted-cloud-agent:dev .
 # for self-build
 docker run -p 8080:8080 -d trusted-cloud-agent:dev agent_main:app --host
 # or using image from docker hub
-docker run -p 8080:8080 -d kanic1111/trusted-cloud-agent:dev   agent_main:app --host
+docker run -p 8080:8080 -d kanic1111/trusted-cloud-agent:dev   agent_main:app --host 0.0.0.0 --port 8080 --reload
 ```
 
 **you can test the server if you enter**
