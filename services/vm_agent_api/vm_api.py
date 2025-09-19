@@ -3,8 +3,7 @@ V4 版本的 FastAPI 介面，用於處理 VM 助理 Agent 對話，支援多使
 """
 
 # main.py
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import  APIRouter
 from pydantic import BaseModel
 from fastapi import HTTPException
 import traceback  # 若你想 log 更詳細的錯誤
@@ -13,33 +12,14 @@ from agent.session import *
 from agent.agent_vm import handle_vm_creation_flow  # 🆕 加入建立判斷邏輯
 
 
-app = FastAPI()
-
-# ➕ 允許 CORS（跨來源請求）
-'''
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://vm-assistant.example.com", "https://vm-assistant.example.com"],  # 依實際有無 https 調整
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-'''
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # 依實際有無 https 調整
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
+router = APIRouter()
 # 設定請求格式
 class ChatRequest(BaseModel):
     token: str
     message: str
 
 # 定義 API URL
-@app.post("/v4/agent/vm")
+@router.post("/v4/agent/vm")
 async def create_vm_chat_v4(req: ChatRequest):
     """
     處理 VM 助理對話請求，透過 token 管理 session 狀態，並回傳 LLM 回應。
@@ -66,6 +46,6 @@ async def create_vm_chat_v4(req: ChatRequest):
         raise HTTPException(status_code=500, detail="❌ Agent 發生內部錯誤，請稍後再試。")
 
 # 可以加上健查驗證 endpoint
-@app.get("/v4/agent/ping")
+@router.get("/v4/agent/ping")
 def ping():
     return {"status": "ok"}

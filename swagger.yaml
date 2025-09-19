@@ -1,0 +1,342 @@
+openapi: 3.0.3
+info:
+  title: Trusted Cloud Smart Agent API
+  description: |
+    API documentation for the Trusted Cloud Smart Agent system that provides:
+    - VM creation and management through conversational AI
+    - Jupyter notebook environment setup
+    - LLM-powered chat interactions
+    - Static image serving capabilities
+  version: 1.0.0
+  contact:
+    name: Trusted Cloud Team
+  license:
+    name: MIT
+
+servers:
+  - url: http://localhost:8000
+    description: Development server
+  - url: https://api.trustedcloud.example.com
+    description: Production server
+
+paths:
+  /:
+    get:
+      summary: List all available routes
+      description: Returns a list of all available API routes and their methods
+      tags:
+        - System
+      responses:
+        '200':
+          description: Successful response with route information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  routes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        path:
+                          type: string
+                          description: The route path
+                        methods:
+                          type: array
+                          items:
+                            type: string
+                          description: HTTP methods supported
+                        name:
+                          type: string
+                          description: Route name
+                        mounted_app:
+                          type: string
+                          description: Mounted application type (for static files)
+
+  /agent/v1/chat:
+    post:
+      summary: LLM Chat Interface
+      description: |
+        Process chat requests through the LLM system with support for:
+        - Multi-user session management via tokens
+        - Image and text content responses
+        - Error handling and recovery
+      tags:
+        - LLM Chat
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+            example:
+              token: "user123_session"
+              message: "Hello, can you help me with cloud services?"
+      responses:
+        '200':
+          description: Successful chat response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+              example:
+                content:
+                  - type: "text"
+                    value: "Hello! I'd be happy to help you with cloud services."
+                  - type: "image"
+                    value: "/images/cloud-diagram.png"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /agent/v1/chat/ping:
+    get:
+      summary: Health check for LLM chat service
+      description: Simple health check endpoint to verify LLM chat service availability
+      tags:
+        - LLM Chat
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ok"
+
+  /agent/v4/agent/vm:
+    post:
+      summary: VM Creation Agent
+      description: |
+        Conversational interface for VM creation and management:
+        - Collects VM specifications through natural language
+        - Handles parameter validation and confirmation
+        - Executes VM creation when confirmed
+      tags:
+        - VM Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+            example:
+              token: "vm_user_456"
+              message: "I need a VM with 4 CPU cores and 8GB RAM"
+      responses:
+        '200':
+          description: VM agent response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VMAgentResponse'
+              example:
+                reply: "I understand you need a VM with 4 CPU cores and 8GB RAM. What operating system would you prefer?"
+                done: false
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /agent/v4/agent/ping:
+    get:
+      summary: Health check for VM agent service
+      description: Simple health check endpoint to verify VM agent service availability
+      tags:
+        - VM Management
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ok"
+
+  /agent/v1/agent/jupyter:
+    post:
+      summary: Jupyter Environment Agent
+      description: |
+        Conversational interface for Jupyter notebook environment setup:
+        - Guides users through Jupyter configuration
+        - Handles environment parameter collection
+        - Creates Jupyter instances when confirmed
+      tags:
+        - Jupyter Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+            example:
+              token: "jupyter_user_789"
+              message: "Set up a Jupyter environment for data science"
+      responses:
+        '200':
+          description: Jupyter agent response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JupyterAgentResponse'
+              example:
+                reply: "I'll help you set up a Jupyter environment for data science. What Python version do you prefer?"
+                done: false
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /agent/v1/agent/ping:
+    get:
+      summary: Health check for Jupyter agent service
+      description: Simple health check endpoint to verify Jupyter agent service availability
+      tags:
+        - Jupyter Management
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ok"
+
+  /images/{filename}:
+    get:
+      summary: Serve static images
+      description: |
+        Serves static image files from the trusted-cloud image directory.
+        Images are typically used in chat responses and documentation.
+      tags:
+        - Static Files
+      parameters:
+        - name: filename
+          in: path
+          required: true
+          description: The image filename to retrieve
+          schema:
+            type: string
+            example: "architecture-diagram.png"
+      responses:
+        '200':
+          description: Image file
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Image not found
+
+components:
+  schemas:
+    ChatRequest:
+      type: object
+      required:
+        - token
+        - message
+      properties:
+        token:
+          type: string
+          description: Unique session token for user identification
+          example: "user123_session_abc"
+        message:
+          type: string
+          description: User's message or query
+          example: "Hello, I need help with cloud services"
+
+    ContentItem:
+      type: object
+      required:
+        - type
+        - value
+      properties:
+        type:
+          type: string
+          enum: ["text", "image"]
+          description: Type of content item
+        value:
+          type: string
+          description: Content value (text content or image path)
+
+    ChatResponse:
+      type: object
+      required:
+        - content
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItem'
+          description: Array of content items (text and images) in response order
+
+    VMAgentResponse:
+      type: object
+      required:
+        - reply
+        - done
+      properties:
+        reply:
+          type: string
+          description: Agent's response message
+        done:
+          type: boolean
+          description: Whether the VM creation process is complete
+
+    JupyterAgentResponse:
+      type: object
+      required:
+        - reply
+        - done
+      properties:
+        reply:
+          type: string
+          description: Agent's response message
+        done:
+          type: boolean
+          description: Whether the Jupyter setup process is complete
+
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Error message
+          example: "❌ Agent 發生內部錯誤，請稍後再試。"
+
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: X-Session-Token
+      description: Session token for user identification
+
+tags:
+  - name: System
+    description: System-level endpoints for route discovery and health checks
+  - name: LLM Chat
+    description: Large Language Model chat interface endpoints
+  - name: VM Management
+    description: Virtual Machine creation and management endpoints
+  - name: Jupyter Management
+    description: Jupyter notebook environment management endpoints
+  - name: Static Files
+    description: Static file serving endpoints
