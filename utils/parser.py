@@ -1,6 +1,7 @@
 import re
 import os
 import yaml
+import json
 from typing import List
 
 
@@ -12,7 +13,7 @@ class ImageTagParser:
         """
         self.config = self.load_config(config_path)
         self.base_url = self.get_base_url_from_config()
-        
+
     @staticmethod
     def load_config(path: str) -> dict:
         """
@@ -39,7 +40,6 @@ class ImageTagParser:
         :param config: 包含 image_base_url 的設定 dict
         :return: [{"type": "text", ...}, {"type": "image", ...}]
         """
-
         content = []
         pattern = re.compile(r"[（(]見圖[:：](.+?)[）)]")
         parts = pattern.split(text)
@@ -47,15 +47,17 @@ class ImageTagParser:
         for i, part in enumerate(parts):
             if i % 2 == 0:
                 if part.strip():
-                    content.append({"type": "text", "value": part.strip()})
+                    yield {"type": "text", "value": part.strip()}
+                #    content.append({"type": "text", "value": part.strip()})
             else:
                 # 如果路徑包含 ./trusted-cloud/image/ 就把它移除
                 relative_path = part.strip().replace("./trusted-cloud/image/", "")
-                
+
                 # 如果路徑包含 ./trusted-cloud/image/ 就把它移除
                 #relative_path = relative_path.replace("./trusted-cloud/image/", "")
-                content.append({
-                    "type": "image",
-                    "value": f"{self.base_url}/{relative_path}"
-                })
-        return content
+           #     content.append({
+           #         "type": "image",
+           #         "value": f"{self.base_url}/{relative_path}"
+           #     })
+                yield {"type": "image", "value": f"{self.base_url}/{relative_path}"}
+   #     return content

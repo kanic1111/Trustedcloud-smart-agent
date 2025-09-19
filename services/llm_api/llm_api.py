@@ -5,6 +5,7 @@ V4 版本的 FastAPI 介面，用於處理 VM 助理 Agent 對話，支援多使
 # main.py
 from fastapi import APIRouter, HTTPException
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from typing import Literal, List
 import re
@@ -29,7 +30,7 @@ class ChatResponse(BaseModel):
     #reply: str
     content: List[ContentItem]
     #done: bool
-    
+
 # 定義 API URL
 @router.post("/v1/chat", response_model=ChatResponse)
 async def chat_v1(req: ChatRequest):
@@ -41,20 +42,21 @@ async def chat_v1(req: ChatRequest):
     try:
         # 處理圖片路徑
         parser = ImageTagParser()
-        
+
         manager = session_store.get_or_create(req.token)
-        
+
         # 第一步：先處理 Agent 回覆（參數收集）
         reply = await manager.chat(req.message)
-        
         # 轉 reply 格式
+        return StreamingResponse(reply, media_type="text/plain")
         reply = str(reply)
-        
+
         # 圖文處理
         content = parser.convert_image_tags(reply)
-        
-        return {"content": content}
-    
+        print(content)
+        #return StreamingResponse(content[0]["value"], media_type="text/plain")
+#        return {"content": content}
+
     except Exception as e:
         traceback.print_exc()
         raise HTTPException(status_code=500, detail="❌ Agent 發生內部錯誤，請稍後再試。")

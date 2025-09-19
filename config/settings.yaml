@@ -4,12 +4,12 @@
 # "llama4-scout"
 openai_base_url: "http://140.110.160.253:30002/v1"
 api_key : "ollama"
-llm_model_name : "llama3.3:70b-instruct-q5_K_M"
+llm_model_name : "gpt-oss:20b"
 
 # LLM 用
-openai_base_url_llm: "http://140.110.160.97:30002/v1""
-api_key_llm : "ollama"
-llm_model_name_llm : "llama4-scout"
+# openai_base_url_llm: "http://140.110.160.97:30002/v1"
+# api_key_llm : "ollama"
+# llm_model_name_llm : "llama4-scout"
 
 # 預設 prompt 目前預設是 basic, 共有 basic , structured, article_qa, k8s_instruction 三總
 prompt_style: "k8s_instruction"

@@ -4,6 +4,7 @@ import subprocess
 import time
 import shutil
 import subprocess
+import os
 from dotenv import load_dotenv
 from qdrant_client import QdrantClient
 from llama_index.vector_stores.qdrant import QdrantVectorStore
@@ -43,14 +44,15 @@ class QdrantManager :
         讀取 .env 並設定相關屬性
         """
         load_dotenv(dotenv_path=env_path)
-        self.vm_host = os.getenv("VM_HOST")
+        self.qdrant_host = os.getenv("QDRANT_HOST")
+        self.ollama_host = os.getenv("OLLAMA_HOST")
         self.qdrant_port = os.getenv("QDRANT_PORT")
         self.ollama_port = os.getenv("OLLAMA_PORT")
         
         # Qdrant url
-        self.url = f"http://{VM_HOST}:{QDRANT_PORT}"
+        self.url = f"http://{self.qdrant_host }:{self.qdrant_port }"
         # ollama url
-        self.base_url = f"http://{VM_HOST}:{OLLAMA_PORT}"
+        self.base_url = f"http://{self.ollama_host }:{self.ollama_port}"
         
     def check_collection_exists(self, collection_name) :
         """

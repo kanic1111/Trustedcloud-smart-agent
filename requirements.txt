@@ -7,7 +7,7 @@ fastapi
 uvicorn
 requests
 python-dotenv
-pyyaml
+PyYAML
 
 # YAML processing
 ruamel.yaml==0.18.6

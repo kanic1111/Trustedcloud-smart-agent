@@ -146,7 +146,9 @@ class VMAgentManager:
             model=model
         )
         self.wrapper.agent = self.agent
-
+        # async for event in self.agent.stream():
+        #     if event.type == "response.delta":
+        #         print(event.delta, end="", flush=True)
         self.wrapper.reset_context()
          
         self.last_access_time = time.time()

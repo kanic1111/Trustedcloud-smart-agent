@@ -98,6 +98,7 @@ class VMAgentManager:
         print('messages', messages)
         
         response = self.model_handler.ask_openai(self.llm, messages, False)
+        return response
         print(response)
         
         rewritten_query = response.choices[0].message.content.strip()
@@ -152,7 +153,8 @@ class VMAgentManager:
             
             # llm
             response = self.model_handler.ask_openai(self.llm, ques_str, False)
-            response = response.choices[0].message.content.strip()
+            #response = response.choices[0].message.content.strip() #need to change to streaming
+
             print(response)
             return response
         else:

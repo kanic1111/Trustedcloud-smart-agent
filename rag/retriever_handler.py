@@ -104,6 +104,7 @@ class RetrieverHandler:
         unique_docs = {}
         for name, retriever in self.retrievers.items():
             print(f"🔍 使用 {name} 檢索器 (權重: {self.weights[name]})...")
+            print(retriever)
             res = retriever.retrieve(prompt)  # 執行檢索
             
             # ✅ 調整分數權重並去重

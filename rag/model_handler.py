@@ -12,10 +12,9 @@ from llama_index.embeddings.ollama import OllamaEmbedding
 # 系統工具庫
 import shutil
 import os
-
 # 自定義庫
 from llama_index.postprocessor.flag_embedding_reranker import FlagEmbeddingReranker
-
+from utils.parser import *
 # 時間
 import time
 
@@ -29,7 +28,7 @@ class ModelHandler:
         self,
         Qdrant_vector_collection_name,
         temp:float,
-        api_key, 
+        api_key,
         llm_model_name,  # 範例格式 ['llmam3.3']
         openai_base_url,
         embed_model_name='bge-m3',
@@ -37,7 +36,7 @@ class ModelHandler:
         reranker_top=5,
         similarity_top_k=10,
         qdrant_manager=None,
-        
+
         ) :
         """
         初始化 ModelHandler 類，設置 LLM 模型、Qdrant 向量集合、reranker 及其他參數。
@@ -47,23 +46,23 @@ class ModelHandler:
         :param embed_model_name: 預設嵌入模型名稱
         :param reranker_model: Reranker 模型名稱
         """
-        
+
         self.Qdrant_vector_collection_name = Qdrant_vector_collection_name
         self.llm_model_name = llm_model_name
         self.reranker_top = reranker_top
         self.temp = temp
         self.api_key = api_key
         self.embed_model_name = embed_model_name
-        
-        
+
+
         # TODO 要改參數讀取
         self.base_url, _  = self.get_base_url()
         self.openai_base_url = openai_base_url
-        
-        
+
+
         self.embed_model = self.embed_model_settings()
         self.similarity_top_k = similarity_top_k
-        
+
         # ✅ 初始化 Qdrant 向量庫管理器
         self.qdrant_manager = qdrant_manager if qdrant_manager else QdrantManager()
         print('✅ embed_model和Qdrant name', self.embed_model, self.Qdrant_vector_collection_name)
@@ -75,7 +74,7 @@ class ModelHandler:
         # ✅ 初始化 LLM 和檢索引擎
         self.retriever_engine = self.initialize_retriever_core()  # ⚡️ 這裡不使用 Streamlit 變數
         self.bm25_retriever = self.initialize_bm25retriever_core()# ⚡️ 建立bm25用retriever
-        
+
     # ========================================
     # ✅ 1. 檢索引擎初始化（核心函數）
     # ========================================
@@ -92,7 +91,7 @@ class ModelHandler:
         )
         print("✅ Retriever Engine Initialized (Core)")
         return retriever_engine
-        
+
     def initialize_bm25retriever_core(self):
         """
         初始化檢索引擎（不依賴 Streamlit）。
@@ -116,7 +115,7 @@ class ModelHandler:
         """
         self.qdrant_manager = QdrantManager()
         self.index = self.qdrant_manager.qdrant_vector(self.embed_model, Qdrant_vector_collection_name)
-        
+
         self.bm25_retriever = ChineseBM25Retriever(
             nodes=self.index.vector_store.get_nodes(),
             similarity_top_k=self.similarity_top_k
@@ -148,7 +147,7 @@ class ModelHandler:
         :return: True（在 Docker 環境）或 False（本機環境）
         """
         return shutil.which("docker") is not None
-    
+
     def get_base_url(self):
         """
         根據環境動態設置 base_url。
@@ -179,7 +178,7 @@ class ModelHandler:
     # ========================================
     # ✅ 5. 問 OpenAI 的問題
     # ========================================
-    def ask_openai(self, llm, question, stream=True):
+    def ask_openai(self, llm, question, stream: bool = False):
         """
         使用已初始化的 OpenAI LLM 來問問題
         :param question: 使用者的問題 (str)
@@ -187,23 +186,39 @@ class ModelHandler:
         """
         try:
             # 測試llm時間用
+            parser = ImageTagParser()
             llm_start_time = time.time()
-            
+
             response_stream = llm.chat.completions.create(
                 model=self.llm_model_name[0],
                 messages=question,
                 temperature=self.temp,
                 stream=stream,
             )
-            
+
             print(f"🔹 LLM 時間: {time.time() - llm_start_time:.2f} 秒")
             print(response_stream)
-            return response_stream
+            if stream:
+            # async generator that yields chunks
+                async def generate():
+                    buffer = ""
+                    for event in response_stream:
+                        delta = event.choices[0].delta
+                        if hasattr(delta, "content") and delta.content:
+                            buffer += delta.content
+                            print(buffer)
+                            content = parser.convert_image_tags(buffer)
+                            for parsed in content:
+                                yield json.dumps(parsed, ensure_ascii=False) + "\n"
+                            #yield content
+                return generate()
+            else:
+                return response_stream
 
         except Exception as e:
             print(f"❌ OpenAI 回應錯誤: {e}")
             return "發生錯誤，請稍後再試"
-            
+
 
 if __name__ == "__main__":
     # 設定相關參數
