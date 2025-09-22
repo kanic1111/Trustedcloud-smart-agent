@@ -52,12 +52,12 @@ class ImageTagParser:
             else:
                 # 如果路徑包含 ./trusted-cloud/image/ 就把它移除
                 relative_path = part.strip().replace("./trusted-cloud/image/", "")
-
+                path = self.base_url + "" + relative_path
                 # 如果路徑包含 ./trusted-cloud/image/ 就把它移除
                 #relative_path = relative_path.replace("./trusted-cloud/image/", "")
            #     content.append({
            #         "type": "image",
            #         "value": f"{self.base_url}/{relative_path}"
            #     })
-                yield {"type": "image", "value": f"{self.base_url}/{relative_path}"}
+                yield {"type": "image", "value": path}
    #     return content

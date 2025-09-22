@@ -16,10 +16,10 @@ class VMAgentManager:
         # builder = TrustedCloudVMBuilder(token, project_id)
         # self.resources = VMResources(builder, token, project_id)
     def __init__(self, token: str):
-        
+
         self.last_access_time = time.time()
         # 基本參數初始化
-        self.parameters_initializer() 
+        self.parameters_initializer()
 
 
     def _read_yaml(self):
@@ -38,7 +38,7 @@ class VMAgentManager:
         """
         獲取加載的 YAML 參數，並以元組格式返回。
         :return: 包含 YAML 設定的變數元組
-        """        
+        """
         parameters = self._read_yaml()  # 讀取 YAML 參數
         self.openai_base_url = str(parameters['openai_base_url_llm'])
         self.api_key = str(parameters['api_key_llm'])
@@ -48,7 +48,7 @@ class VMAgentManager:
         self.trusted_cloud_Qdrant_vector_collection_name = str(parameters['trusted_cloud_Qdrant_vector_collection_name'])
         self.embed_model_name = str(parameters['embed_model_name'])
         self.temperature = float(parameters['temperature'])
-        
+
         print(self.openai_base_url)
         print(self.api_key)
         print(self.llm_model_name)
@@ -56,7 +56,7 @@ class VMAgentManager:
         self.model_handler = ModelHandler(
             self.trusted_cloud_Qdrant_vector_collection_name,
             self.temperature,
-            self.api_key, 
+            self.api_key,
             self.llm_model_name,  # 範例格式 ['llmam3.3']
             self.openai_base_url,
             embed_model_name = self.embed_model_name,
@@ -76,7 +76,7 @@ class VMAgentManager:
                 "bm25_retriever": (self.model_handler.bm25_retriever, 1.0)  # bm25_retriever 的權重為 1.0
             },
             reranker_top=self.reranker_top)
-            
+
     def update_access_time(self):
         """
         更新此 manager 的最後存取時間，用於閒置檢查。
@@ -90,19 +90,17 @@ class VMAgentManager:
         print('query', query)
         # 設定 prompt
         prompt_formatter = self.retriever.prompt_formatter
-        
+
         print('prompt_formatter', prompt_formatter)
         # 取得 prompt 格式（messages 結構，包含 system 和 user 的角色訊息）
         messages = prompt_formatter.format_prompt('', query, "query_rewriting")
-        
+
         print('messages', messages)
-        
+
         response = self.model_handler.ask_openai(self.llm, messages, False)
-        return response
         print(response)
-        
+
         rewritten_query = response.choices[0].message.content.strip()
-        
         return rewritten_query
 
     def process_rewritten_query(self, text):
@@ -110,7 +108,7 @@ class VMAgentManager:
         處理 LLM 改寫後的查詢輸出：
         1. 判斷是否為技術相關（開頭為 ✅）
         2. 僅去除第一個冒號前的部分（支援全形：與半形:）
-        
+
         :param text: LLM 輸出文字（含標記與描述）
         :return: (is_technical: bool, cleaned_content: str)
         """
@@ -141,7 +139,6 @@ class VMAgentManager:
     async def chat(self, user_input: str):
         # 去口語化
         query = self.denaturalize_input(user_input)
-        
         is_technical, cleaned_content = self.process_rewritten_query(query)
         # ToDo
         '''
@@ -150,20 +147,13 @@ class VMAgentManager:
         if is_technical :
             # retriever
             ques_str, retrieve_file = self.retriever.format_retrieved_result(cleaned_content, prompt_style=self.prompt_style)
-            
-            # llm
-            response = self.model_handler.ask_openai(self.llm, ques_str, False)
-            #response = response.choices[0].message.content.strip() #need to change to streaming
 
-            print(response)
+            # llm
+            response = self.model_handler.ask_openai(self.llm, ques_str, True)
             return response
+            # response = response.choices[0].message.content.strip()
+            # print(response)
+            # return response
         else:
             print(cleaned_content)
             return cleaned_content
-            
-        
-        
-
-        
-
-
