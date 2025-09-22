@@ -48,12 +48,12 @@ async def chat_v1(req: ChatRequest):
         # 第一步：先處理 Agent 回覆（參數收集）
         reply = await manager.chat(req.message)
         # 轉 reply 格式
-        return StreamingResponse(reply, media_type="text/plain")
-        reply = str(reply)
+#        reply = str(reply)
+        return StreamingResponse(reply)
 
         # 圖文處理
-        content = parser.convert_image_tags(reply)
-        print(content)
+#        content = parser.convert_image_tags(reply)
+#        print(content)
         #return StreamingResponse(content[0]["value"], media_type="text/plain")
 #        return {"content": content}
 

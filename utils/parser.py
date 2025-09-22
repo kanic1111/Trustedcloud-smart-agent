@@ -47,7 +47,7 @@ class ImageTagParser:
         for i, part in enumerate(parts):
             if i % 2 == 0:
                 if part.strip():
-                    yield {"type": "text", "value": part.strip()}
+                    yield {"type": "text", "value": part.strip() }
                 #    content.append({"type": "text", "value": part.strip()})
             else:
                 # 如果路徑包含 ./trusted-cloud/image/ 就把它移除

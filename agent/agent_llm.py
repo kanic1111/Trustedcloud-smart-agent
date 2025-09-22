@@ -151,9 +151,19 @@ class VMAgentManager:
             # llm
             response = self.model_handler.ask_openai(self.llm, ques_str, True)
             return response
-            # response = response.choices[0].message.content.strip()
-            # print(response)
-            # return response
+            #response = response.choices[0].message.content.strip()
+            #print(response)
+            #return response
         else:
-            print(cleaned_content)
-            return cleaned_content
+            input=[
+            {
+                "role": "system",
+                "content": "response like a chat bot, reply with English"
+            },
+            {
+                "role": "user",
+                "content": cleaned_content
+            }]
+            response = self.model_handler.ask_openai(self.llm, input, True)
+            print(response)
+            return response

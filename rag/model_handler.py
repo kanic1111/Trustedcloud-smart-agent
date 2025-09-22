@@ -153,7 +153,7 @@ class ModelHandler:
         根據環境動態設置 base_url。
         :return: Docker 環境回傳 "http://localhost:11434"，否則回傳 "http://ollama:11434"
         """
-        base_url = "http://localhost:11434" if self.is_docker_environment() else "http://ollama:11434"
+        base_url = "http://localhost:11434" if self.is_docker_environment() else "http://ollama:11435"
 
         # ollama用url
         # openai_base_url = "http://localhost:11434/v1" if self.is_docker_environment() else "http://ollama:11434/v1"
@@ -205,12 +205,13 @@ class ModelHandler:
                     for event in response_stream:
                         delta = event.choices[0].delta
                         if hasattr(delta, "content") and delta.content:
-                            buffer += delta.content
+                            buffer += delta.content + " "
                             print(buffer)
                             content = parser.convert_image_tags(buffer)
                             for parsed in content:
                                 yield json.dumps(parsed, ensure_ascii=False) + "\n"
                             #yield content
+                        buffer = ""
                 return generate()
             else:
                 return response_stream
