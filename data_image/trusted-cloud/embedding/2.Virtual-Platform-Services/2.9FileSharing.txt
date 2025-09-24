@@ -1,0 +1,23 @@
+File Sharing
+Based on the NFS file system protocol, it provides file sharing services within the same virtual network.
+Create a file share
+Select File Sharing from the Services list to enter the file sharing management page, then click ＋CREATE.
+Fill in the name, description, select the virtual network and set the capacity, then click NEXT: REVIEW + CREATE >.
+Tip: The maximum capacity of a single volume is 64 TiB.
+Check the creation settings and click CREATE after confirming.
+Manage file sharing
+Once a file share is created, it will appear in the list. Click the more options icon on the right side of the list to perform Copy ID and Delete.
+Go to the file sharing details page and start using it when the state shows available.
+Sharing path: The sharing path will be displayed below the status and can be mounted and used in other services.
+Edit description: Click EDIT, then click OK after editing.
+Size(GB): On the file sharing details page, click EXTEND, enter the expand capacity and click OK.
+Delete a file sharing
+Click the more options icon on the right side of the list, and then click Delete.
+Batch deletion
+If you want to quickly delete multiple resources, you can click BATCH DELETE on the upper right side of the management page.
+Check the items you want to delete and click
+OK.
+Add permission
+In the Management List area, click ADD PERMISSION SETTINGS.
+In the Add Permission window, set the CIDR (whitelist of IP ranges that are allowed to access) and select the Permission (Read-only or Read & Write). Once completed, click OK.
+The newly added permission setting will be displayed in the permission list. You can add multiple permission settings or delete existing permission settings.

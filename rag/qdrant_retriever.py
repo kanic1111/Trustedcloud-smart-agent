@@ -4,7 +4,7 @@ import subprocess
 import time
 import shutil
 import subprocess
-import os
+from utils.parser import * 
 from dotenv import load_dotenv
 from qdrant_client import QdrantClient
 from llama_index.vector_stores.qdrant import QdrantVectorStore
@@ -24,7 +24,8 @@ class QdrantManager :
         初始化 QdrantManager 並連接到指定的 Qdrant 伺服器。
         """
         # 儲存 URL 配置
-        self.load_env()
+        # self.load_env() # 舊的讀取 .ENV
+        self.load_config()
         '''
         if self.is_docker_environment() :
             self.url = "http://localhost:6333"
@@ -38,21 +39,37 @@ class QdrantManager :
         self.client = QdrantClient(url=self.url)
         self.embed_model_name = embed_model_name
         self.embed_model = self.embed_model_settings()
+
+    def load_config(self):
+        """
+        讀取 config 並 ip、qdrant、ollama等設定相關屬性
+        """
+        self.parser = ImageTagParser()
+        self.vm_host = self.parser.config['server']['host_ip']
+        qdrant_host = self.parser.config['qdrant']['host_ip']
+        ollama_host = self.parser.config['ollama']['host_ip']
+
+        qdrant_port = self.parser.config['qdrant']['port']
+        ollama_port = self.parser.config['ollama']['port']
+
+        # Qdrant url
+        self.url = f"http://{qdrant_host}:{qdrant_port}"
+        # ollama url
+        self.base_url = f"http://{ollama_host}:{ollama_port}"
         
     def load_env(self, env_path="./.env"):
         """
         讀取 .env 並設定相關屬性
         """
         load_dotenv(dotenv_path=env_path)
-        self.qdrant_host = os.getenv("QDRANT_HOST")
-        self.ollama_host = os.getenv("OLLAMA_HOST")
+        self.vm_host = os.getenv("VM_HOST")
         self.qdrant_port = os.getenv("QDRANT_PORT")
         self.ollama_port = os.getenv("OLLAMA_PORT")
         
         # Qdrant url
-        self.url = f"http://{self.qdrant_host }:{self.qdrant_port }"
+        self.url = f"http://{VM_HOST}:{QDRANT_PORT}"
         # ollama url
-        self.base_url = f"http://{self.ollama_host }:{self.ollama_port}"
+        self.base_url = f"http://{VM_HOST}:{OLLAMA_PORT}"
         
     def check_collection_exists(self, collection_name) :
         """

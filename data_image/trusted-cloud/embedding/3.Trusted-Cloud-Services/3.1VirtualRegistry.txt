@@ -1,0 +1,31 @@
+Virtual Registry
+Preparation
+Please prepare your own virtual image and upload the image file to the Data Storage service.
+Note:
+* The maximum size of a virtual image file that can be imported is 1.5 TB.
+* Linux image formats such as: raw, qcow2.
+* Windows image formats such as: vhd, vhdx, vmdk, vdi, iso, ploop, aki, ari, ami.
+* It is recommended to use third-party software to upload image, which has larger transfer capacity and faster speed.
+Create a virtual image
+Select Virtual Registry from the Services list to enter the Virtual Image Management page, and then click +CREATE.
+Enter the image file name, description, operating system, and operating system version, and then click NEXT: IMAGE SOURCE>.
+Set the image format, bucket and file path where the image is located, and then click NEXT: REVIEW + CREATE >.
+After the virtual image is created, it will appear in the list. Click the list to enter the virtual image version list. It will take a while for the system to prepare the image. Once the state changes to active, you can start using it.
+Manage virtual images
+Enter the virtual image management page to view the virtual image list, click on the field name to sort, use smart search, view usage, or delete in batches.
+Edit description
+Enter the virual image management page, move the mouse to the more options button on the right side of the virtual, and then click Edit Description.
+Delete the entire virual images
+Enter the virual image management page, move the mouse to the more options button on the right side of the virtual, and then click Delete. Please note: This virtual image and all version under it will be deleted.
+Batch deletion
+If you want to quickly delete multiple resources, you can click BATCH DELETE on the upper right side of the management page.
+Check the items you want to delete and click OK.
+Manage virtual image version
+Enter the virtual image version management page to view the virtual image version list, click on the field name to sort, use smart search, add new shares, or move the mouse to the more options button on the right side of the list and click Edit Sharing, Download, Copy ID or Delete.
+Add sharing
+You can choose to share a specific virtual image version with specific project members.
+Enter the virtual image version list page and click ADD SHARING in the upper right corner.
+Click OK after checking the shared versions and sharing members.
+Members with permission to use this virtual image can view, access, edit, and use the virtual file.
+Click the more options button to the right of the list, then click Download.
+The downloaded virtual image file will be stored in the Data Storage service. After completing the settings for downloading the virtual image, click OK.

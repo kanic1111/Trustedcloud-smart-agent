@@ -1,0 +1,68 @@
+# Auto Scaling
+
+Auto-scaling service is an automatic elastic adjustment monitoring mechanism that can dynamically add or remove the number of virtual machines under specified conditions to respond to resource shortages and service interruptions caused by increased load, thereby improving service quality and performance.
+
+When the load reaches the required value, the number is expanded. When it is lower than the required value, the number is reduced immediately. The load balancing function is used to evenly distribute the traffic, which can effectively reduce the cost of establishing idle virtual machines for a long time.
+
+## Setting up automatic expansion
+* Select **Auto Scaling** from the Services list to enter the Auto-Scaling management page, then click **＋CREATE**.
+
+#### 1. Basic info
+* Name: Enter a name.
+* Description: Enter a description.
+* Virtual Network: Select a virtual network.
+* Metric: Select cpu or memory. This is the resource usage indicator used to determine whether to expand or reduce the number of virtual machines.
+* Upper threshold: Set the highest threshold of the metric. For example, if the Metric is cpu, setting this value to 80 means that the number of virtual machines will be automatically expanded when the CPU usage exceeds 80%.
+* Lower threshold: Set the lowest threshold of the metric. When the threshold is lower than this, the number of virtual machines will be automatically reduced.
+* Virtual machine limit: Set the maximum limit for the number of virtual machines.
+* Virtual machine minimum limit: Set the minimum limit for the number of virtual machines.
+* Then click **NEXT: VM SPECS>**.
+
+（Image:./trusted-cloud/image/2.Virtual-Platform-Services/2.Virtual-Platform-Services_2.8AutoScaling_img1.png）
+
+#### 2. VM Specs
+* Image source: Select the image source.
+* Image Tag: Select an image tag.
+* View Resource Usage/Quota: You can view the current resource quota and usage. If the available resource quota has reached the upper limit and some models cannot be selected, you can contact your system administrator to increase the project resource quota.
+* Flavor: Select flavor.
+* Security Group: Select a security group.
+* Keypairs: (Optional) Select **enable** or **Disable** key pair authentication. If you enable key pair, you will then need to select a key pair.
+* Password: Set the initial password.
+* Initialization Commands: (Optional) Enter or import initialization commands.
+* Then click **NEXT: REVIEW + CREATE >**.
+
+#### 3. Review + Create
+* Check the creation settings and click **CREATE** after confirming.
+
+## Manage Auto Scalings
+* Once an auto scaling is created, it will appear in the list. Click the more options icon on the right side of the list to perform **Copy ID** and **Delete**.
+* Click on the list to view the detailed information of the service. When the state shows **`active`**, you can start using it. When the load reaches the required value, the number of virtual machines is expanded; if it falls below the required value, it is immediately reduced.
+
+（Image:./trusted-cloud/image/2.Virtual-Platform-Services/2.Virtual-Platform-Services_2.8AutoScaling_img2.png）
+
+* Enter the auto scaling details page to edit the description, VM upper limit, VM lower limit, thresholds and other settings.
+
+（Image:./trusted-cloud/image/2.Virtual-Platform-Services/2.Virtual-Platform-Services_2.8AutoScaling_img3.png）
+
+### Delete an Auto Scaling
+* Click the more options icon to the right of the listing, then click **Delete**.
+
+### Stop/Start the virtual machine
+* Click the **VM SPECS** tab at the top, move your mouse to the more options icon on the right side of the virtual machine list, and then click **Stop**; if the virtual machine is stopped, the menu will display **Start**.
+
+（Image:./trusted-cloud/image/2.Virtual-Platform-Services/2.Virtual-Platform-Services_2.8AutoScaling_img4.png）
+
+### Connect to the virtual machine
+* Click the **VM SPECS** tab at the top, move your mouse to the more options icon on the right side of the virtual machine list, and then click **Console**.
+* After opening the Console window in the browser, you can quickly connect to the virtual machine using the initial password set when creating the auto scaling.
+    * Login account: If you use the public virtual image provided by the system, the default account is as follows:
+    
+        | Virtual Image | Default Login Account |
+        | ------------- | --------------------- |
+        | ubuntu        | ubuntu                |
+        | rocky         | cloud-user            |
+        | windows       | administrator         |
+
+### Attach/Detach a floating IP
+* Click the **VM SPECS** tab. In the VM list at the bottom of the page, move your mouse to the more options icon on the right and click **Attach Floating IP**. If the virtual machine has been configured with a floating IP, the menu will display **Detach Floating IP**.
+* After the configuration is complete, the floating IP will be displayed in the list.

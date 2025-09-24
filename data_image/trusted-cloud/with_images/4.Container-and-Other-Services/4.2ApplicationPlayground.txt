@@ -1,0 +1,133 @@
+# Application Playground
+
+## Create an application playground
+* Select **Application Playground** from the Services list, enter the Application Playground Management page, and click **＋CREATE**.
+
+#### Select an application
+* Select the type of application you want to create. Different application may have different setting items.
+* The system provides two types of application services: **Jupyter Notebook** and **Slurm Cluster**. The following description uses the system-provided Jupyter Notebook (CPU) as an example.
+
+#### Select application version
+* Select the application version.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img1.png）
+
+#### 1. Basic info
+* Enter a name to create a new application, or click the drop-down menu to choose to create a new version under an existing application.
+* Enter a description.
+* Then click **NEXT: FLAVOR>**.
+
+#### 2. Flavor
+* Select the hardware specifications. The hardware options provided here will vary depending on the server's hardware configuration. System administrators can also set them according to project requirements.
+* Click **View Resource Usage/Quota** in the upper right corner to view the current resource quota and used amount. If the available resource quota has reached the upper limit and some models cannot be selected, you can contact your system administrator to increase the project resource quota.
+* Then click **NEXT: NETWORK>**.
+
+#### 3. Network
+* Virtual Network：select a virtual network.
+* Security Groups: select a security group, click **ADD** to add a security group.
+* Jupyter Notebook Port: set the Jupyter Notebook port.
+* Then click **NEXT: AUTHENTICATION>**.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img2.png）
+
+#### 4. Authentication
+* Key pair: Select a key pair. If you have not created a key pair yet, please [**Create a key pair**](/s/key-pair-en) first.
+* Password: Set your login password.
+* SSH Port: Set **Enable** or **Disable**.
+* Port Number: Set the SSH connection port number, the default is 22.
+* Then click **NEXT: REVIEW + CREATE >**.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img3.png）
+
+#### 5. Review + Create
+* Check the creation settings and click **CREATE** after confirming.
+
+## Manage application playgrounds
+* After the application playground is created, it will appear in the list. Click the list to view the detailed information of the service. When the status shows **`ready`**, you can start using it.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img4.png）
+
+:::info
+:bulb: **Tip:** When the state is displayed as **`under review`**, it means that this resource needs to be approved by the project admin before it can be created. The project admin can approve or reject the creation of the resource through the following two operations.
+1. On the management page, click the more options button, then click **Review**.
+2. Click the （Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img5.png） **Review** icon in the upper command bar.
+:::
+
+* Click the more options icon on the right side of the list to **Copy ID**, **Transfer**, or **Delete**.
+* Click on a listing to view service details.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img6.png）
+
+### View Log
+* On the details page, click the **View Log** icon at the top.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img7.png）
+
+#### Add／Unbind a floating IP
+* Click the **INSTANCE LIST** tab at the top, then click the more options icon on the right side of the list, and then click **Add(Unbind) Floating IP**. 
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img8.png）
+
+### Network info
+* In the **Connection & Network Information** section of the Application Playground Details page, you can view settings such as virtual network and security group.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img9.png）
+
+#### Connecting to the Jupyter Notebook Server
+* Jupyter Notebook port: If this application service APP is configured with a floating IP, you can connect to Jupyter Notebook through the floating IP and the Jupyter Notebook port.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img10.png）
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img11.png）
+
+#### Login to the host
+* In the **Certification Information** section, you can view the key pair and SSH port information.
+* If the SSH service is enabled in the application, you can connect via SSH.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img12.png）
+
+* Click the **INSTANCE LIST** tab above to view all instance of the application. If the application has a preset login account, it will be displayed in the list.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img13.png）
+
+* SSH command example
+```
+ssh -i {key} {account}@{host} 
+```
+### Transfer
+* The transfer function can transfer this resource to the private portal synchronously.
+
+:::warning
+:warning: **Note**:
+* The transfer function is only available for stand-alone application in public portal.
+* Please create the desired virtual network and security group in the private portal before transferring.
+* Only the virtual machine's boot disk can be transferred.
+:::
+
+* Click the more options icon on the right side of the list, then click **Transfer**.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img14.png）
+
+* Complete the settings of the transfer window.
+ - Transfer Name: Enter a name.
+ - Transfer Version: Enter the transfer version. The version cannot be repeated.
+ - Virtual Network (Private): Select a virtual network in the private portal.
+ - Security Group (Private): Select a security group for the private portal.
+ - Keypairs: Select a keypair.
+ - Password: Enter the login password for this virtual machine.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.2ApplicationPlayground_img15.png）
+
+* After the transfer is completed, you can view the service in the application in the private portal.
+* Select **Resource Shift** (public portal) from the Services list to view resource transfer records.
+
+:::info
+:bulb: **Tip:** Resources transferred to the private portal will occupy the quota of the project.
+:::
+
+### Delete an application playground
+* Click the more options icon to the right of the listing, then click **Delete**.
+
+### Batch deletion
+* If you want to quickly delete multiple resources, you can click **BATCH DELETE** on the upper right side of the management page.
+* Check the items you want to delete and click **OK**.

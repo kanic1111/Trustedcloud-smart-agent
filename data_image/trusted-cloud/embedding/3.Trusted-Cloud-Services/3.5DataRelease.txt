@@ -1,0 +1,100 @@
+Data Release
+This service can write local files to the temporary storage space on the target service.
+Note: This service is only available in private portal for write only.
+Create a bucket
+Select Data Release from the Services list to enter the Data Release Management page, and then click +CREATE.
+Enter the bucket name and click OK.
+Manage data release
+After the bucket is created, it will appear in the list. Click the list to enter the bucket’s content page to start using it.
+Delete a bucket
+Click the more options icon on the right side of the bucket list, and then click Delete.
+Confirm the name of the bucket to be deleted and click OK.
+Note: Once the bucket is deleted, all data in the storage will be deleted and cannot be restored. The storage in the project is shared by all members. Any modification or deletion may affect users in the group, so please be careful.
+View usage
+Click VIEW USAGE on the management page to view the storage usage information of the project.
+Access control
+You can enable access control settings for the bucket. After enabling the access control settings, only the members who have been added will have read and write access to this bucket.
+Click the more options icon to the right of the bucket list then click Access Control.
+Enable access control settings, then select the member you want to add from the drop-down menu and click ADD to MEMBER LIST.
+After enabling the access control settings, only the members who have been added will have read and write access to this bucket.
+Manage folders/files
+Create a folder
+Enter the storage content list page and click the create folder icon in the command bar above.
+Enter the folder name and click OK.
+Upload files
+Go to the bucket's content page and click the Upload icon in the command bar above.
+Within the Upload window, you can directly drag file(s) or folder(s) to the window or click SELECT FILES to select the file(s) or folder(s) you want to upload, and then click OK after selection.
+After the upload is successful, you will return to the content list page, where information such as file name, size and update date will be displayed.
+Delete a file
+Click the more options icon to the right of the list then click Delete.
+Copy file/folder name
+Click the copy icon to the right of the file or folder name to copy the file/folder name.
+Search files
+Enter the keywords you want to query in the search box to filter out matching items.
+Other access methods
+In addition to being accessible through the user interface, this service also provides S3, SFTP and FTP access methods to facilitate the management of large or large files.
+S3 access method
+1. Download and install Amazon S3 compatible third-party software
+Windows: Use S3 Browser
+MacOS: Use Cyberduck
+Linux (command line mode): use Rclone
+2. Obtain the connected service endpoint
+Please copy the service point in the upper right corner of the management page. This is the connected service endpoint.
+3. Access Key and Secret Key for S3 connection
+Click the user name in the top right corner, and then click Key.
+Then click S3 Key on the left menu to enter the S3 Access Info page.
+The S3 Access Info page provides information such as Access Key and Secret Key.
+Click RENEW KEY on the top right to update your key.
+Key usage tips
+1. This S3 key has no preset period. Once it is set in the third-party software, you can connect directly the next time you open the third-party software.
+2. Please keep your key properly or update it regularly to prevent it from being leaked. After the key is updated, please remember to update the key settings in the third-party software.
+4. Connect file transfer node
+Use Amazon S3 compatible third-party software to connect to the file transfer node. The following are the settings of S3 Browser:
+Account Type: S3 Compatible Storage
+REST Endpoint: Service endpoint release.trusted-cloud.nchc.org.tw
+Access Key ID: Access Key provided on the S3 Connection Information page
+Secret Access Key: The Secret Key provided on the S3 Connection Information page
+Use secure transfer (SSL/TLS): Please check this option
+Signature Version (Advanced S3-compatible storage settings): Signature V4
+5. After the connection is successful, the remote station will display the storage volume of this project.
+FTP access method
+0. Necessary conditions
+Please make sure that Two-factor verification settings is enabled on your account.
+1. Download and install SFTP connection software that supports chat login mode
+For example: FileZilla or Cyberduck.
+2. Obtain the connected service endpoint
+Please copy the service point in the upper right corner of the management page. This is the connected service endpoint.
+Move your mouse to the prompt icon on the right side of the service base to display the port setting information.
+3. Connect file transfer node
+Please configure on FTP connection software that supports chat login mode:
+Protocol: FTP
+Port: 21
+Host: release.trusted-cloud.nchc.org.tw
+Login type: Chat
+User/Password:
+iService users please enter your host account and host password + OTP verification code
+For test users, please enter the platform test account and login password + OTP verification code
+FTP usage tips
+The password for FTP needs to be entered password + OTP verification code.
+It is recommended to use SFTP access method for sensitive data.
+4. After the connection is successful, the remote site will display all the projects you have joined.
+SFTP access method
+0. Necessary conditions
+Please make sure that Two-factor verification settings is enabled on your account.
+1. Download and install SFTP connection software that supports interactive login
+Windows: Use FileZilla or Cyberduck.
+Linux (command line mode): Use SFTP command.
+2. Obtain the connected service endpoint
+Please copy the service point in the upper right corner of the management page. This is the connected service endpoint.
+Move your mouse to the prompt icon on the right side of the service base to display the port setting information.
+3. Connect file transfer node
+Please configure on the SFTP connection software that supports chat login mode:
+Protocol: SFTP
+Port: 22
+Host: exchange.trusted-cloud.nchc.org.tw
+Login type: Chat
+User/Password:
+iService users please enter your host account and host password
+For test users, please enter the platform test account and login password
+OTP password: 6-digit verification code generated by the authenticator application
+4. After the connection is successful, the remote site will display all the projects you have joined.

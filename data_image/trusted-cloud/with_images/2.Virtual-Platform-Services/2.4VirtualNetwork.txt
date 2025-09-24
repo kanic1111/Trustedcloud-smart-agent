@@ -1,0 +1,37 @@
+# Virtual Network
+The Virtual Network Service offers secure and flexible networking functions to help you easily access resources and applications.
+
+:::info
+:bulb: **Tip:**
+* When a project is created, a default virtual network is created and connected to the external network. This virtual network cannot be deleted or modified.
+* Project administrators can manage virtual networks; project users can only use created virtual networks.
+:::
+
+## Create a virtual network
+* Select **Virtual Network** from the Services list, enter the Virtual Network Management page, and then click **＋CREATE**.
+* Enter the information for the virtual network settings and click **NEXT: REVIEW + CREATE >** once completed.
+     * Name: Set the virtual network name. It cannot be repeated and cannot be changed after it is created.
+     * CIDR: Classless Inter-Domain Routing (CIDR), specifies the address range of a virtual network and cannot be repeated with other virtual network segments.
+     * Gateway: Given a default gateway.
+
+（Image:./trusted-cloud/image/2.Virtual-Platform-Services/2.Virtual-Platform-Services_2.4VirtualNetwork_img1.png）
+
+## Manage virtual networks
+* The newly created virtual network will appear in the list on the virtual network management page. Wait until the state changes to **`active`** before you can start using it.
+* Click the more options icon on the right side of the list and select **Disconnect/Connect external network**, **Copy Service ID** or **Delete**.
+
+（Image:./trusted-cloud/image/2.Virtual-Platform-Services/2.Virtual-Platform-Services_2.4VirtualNetwork_img2.png）
+
+### Disconnect/connect to external network
+* Click the more options icon on the right side of the list, then click **Disconnect external network** or Connect to external network.
+
+### Delete a virtual network
+* Click the more options icon on the right side of the list, then click **Delete**.
+
+### Batch deletion
+* If you want to quickly delete multiple resources, you can click **BATCH DELETE** in the upper right corner of the management page.
+
+### View virtual network
+* Click a list to view its detailed information, and click the icons on the command bar to perform **Disconnect/Connect**, **Delete** and **Refresh**.
+
+（Image:./trusted-cloud/image/2.Virtual-Platform-Services/2.Virtual-Platform-Services_2.4VirtualNetwork_img3.png）

@@ -1,0 +1,22 @@
+Overview
+User interface
+The platform provides cloud resource services and management tools and integrates HPC and SeniMesh resources. After successfully logging in, you can enter the homepage of the user interface and start using various services.
+Tip: The following figure shows the services provided by the Public Portal. The services and functions provided by the Private Portal may be different. Please refer to the user guide of each service for details.
+Cloud platform logo: Return to the platform homepage.
+Service list: quickly switch services.
+Select a project: Please select a specific project before using each service.
+Set the language to Chinese or English.
+Documentation: Provide instructions for using the cloud platform.
+Select zone: Select Trusted Cloud or SensiMesh.
+Tip: The services provided by different resource zone may be different.
+Account: Provides account-related information and related functions.
+Current project name and project ID
+Frequent services
+Overview of services
+Roles and permissions
+There are three roles in this platform:
+Roles, Permissions
+------------------------, ----
+Platform Manager (Site Admin), Can control the resources of all tenants and all tenant users on the cloud platform.
+Tenant Admin, Can manage the resources of all users under his/her project.
+Tenant User, Can create and view the resources used by the project.

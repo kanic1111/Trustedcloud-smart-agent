@@ -1,0 +1,11 @@
+Logs
+Logs
+View operation records related to platform services.
+* Click the user name in the top right corner, and then click Record to enter the operation record page.
+* The user's operation records will be displayed in the list. Click the time drop-down menu above to select the time interval you want to view.
+* Click the more options icon on the right side of the list, you can click Copy ID or Original Data.
+User Log
+View the user account related operation history.
+* Click User Log from the menu on the left to enter the account records page.
+* The operation records related to the user account will be displayed in the list. Click the time drop-down menu above to select the time range you want to view.
+* Click the more options icon on the right side of the list, you can click Copy ID or Original Data.

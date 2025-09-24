@@ -153,7 +153,13 @@ class ModelHandler:
         根據環境動態設置 base_url。
         :return: Docker 環境回傳 "http://localhost:11434"，否則回傳 "http://ollama:11434"
         """
-        base_url = "http://localhost:11434" if self.is_docker_environment() else "http://ollama:11435"
+        self.parser = ImageTagParser()
+        ollama_host = self.parser.config['ollama']['host_ip']
+        ollama_port = self.parser.config['ollama']['port']
+
+        # ollama url
+        base_url = f"http://{ollama_host}:{ollama_port}"
+        # base_url = "http://localhost:11434" if self.is_docker_environment() else "http://ollama:11435"
 
         # ollama用url
         # openai_base_url = "http://localhost:11434/v1" if self.is_docker_environment() else "http://ollama:11434/v1"

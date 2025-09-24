@@ -80,7 +80,7 @@ class PromptFormatter:
         
         return messages
 
-    def k8s_instruction_prompt(self, context, query):
+    def k8s_instruction_prompt_ch(self, context, query):
         """
         專為多段混合操作教學內容設計，並強化圖片路徑保留與段落對應機制。
         """
@@ -115,7 +115,7 @@ class PromptFormatter:
             "2. 按下「Console」按鈕，以開啟主機操作介面。(見圖：./pdf_embed/SensiMesh_20250519_.../page17_img35.png)\n\n"
 
             "🛑 **注意**：如果從參考資料中無法找到任何與問題有關的步驟，請回答：\n"
-            "`找不到符合此問題的相關教學或圖片說明。`"
+            "`No relevant tutorials or images were found for this issue.`"
         )
 
         messages = [
@@ -125,7 +125,61 @@ class PromptFormatter:
 
         return messages
 
-    def query_rewriting_prompt_format(self, context, query):
+    def k8s_instruction_prompt(self, context, query):
+        """
+        專為多段混合操作教學內容設計，並強化圖片路徑保留與段落對應機制。
+        可以加在開頭
+        ⚠️ Do not modify the original text of the reference material except for translating it into English. Keep all formatting, images, and paths exactly as they are.
+
+        """
+
+        system_prompt = ('''
+            You are an expert in Kubernetes and cloud platform operation manuals. Based on the user's query, please generate a step-by-step illustrated tutorial using the provided reference materials.
+
+            📌 **Task Focus**:
+            1. The reference materials consist of multiple tutorial articles (formatted as ● ○ bullet points).  
+            2. Each image is denoted as `(Image：./images/1.Overview/1.Overview_1.1Overview_img1.png)`. **You must preserve this notation exactly, including the brackets, colon, and path. Do not modify it.**  
+            3. Identify semantically relevant paragraphs based on the **input query** (including similar actions, synonyms, or related operations). Do not include irrelevant content in the tutorial.  
+            4. If no relevant content is found in the entire dataset, respond with:  
+               `No relevant tutorials or images were found for this issue.`  
+            5. Before producing the final output:  
+               - Keep `(Image：./images/1.Overview/1.Overview_1.1Overview_img1.png)` exactly as is (do not translate or alter).  
+               - Translate all other extracted text into **English**.  
+
+            🟡 **User Query**:  
+            {query}  
+
+            🔵 **Reference Material Format**:  
+            The content contains multiple instructional sections. Each section may include one or more `(Image：./images/...)`.  
+            You must **extract only the relevant steps** based on the query and rewrite them as a clear, ordered instruction set.  
+
+            🟢 **Output Requirements**:  
+            1. Each step must start with a number (1., 2., 3., …).  
+            2. Each step must end with a corresponding image `(Image：...)`, and the **image path must remain unchanged**.  
+            3. Final output text must be in **English**, written clearly and concisely.  
+            4. If steps or images have a sequential order, organize them accordingly.  
+            5. Do not add extra images or unrelated operations.  
+            6. If the response is not in English, translate it into English, while preserving `(Image：...)` in its original form.  
+            7. If the reference material only mentions technical keywords in notes (e.g., firewall, IP configuration), extract and summarize them into supplemental steps. These do not need corresponding images.  
+
+            🔴 **Example Output Format**:  
+            1. Click on "Instances" in the left menu to open the virtual machine page. (Image：./images/1.Overview/1.Overview_1.1Overview_img1.png)  
+            2. Press the "Console" button to open the VM console interface. (Image：./images/1.Overview/1.Overview_1.1Overview_img1.png) 
+
+            🛑 **Important**: If no relevant steps can be found in the reference material, reply with:  
+            `No relevant tutorials or images were found for this issue.`
+            '''
+        )
+
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": f"參考資料：\n{context}"}
+        ]
+
+        return messages
+
+
+    def query_rewriting_prompt_format_ch(self, context, query):
         """
         專為將口語化、模糊不清或情境式中文問題，判斷並處理為技術查詢或直接回覆用語的 Prompt。
         
@@ -158,42 +212,45 @@ class PromptFormatter:
         return messages
 
 
-    def vm_instruction_prompt_沒有單獨拉出確認流程的(self, context: str, options: dict) -> str:
+    def query_rewriting_prompt_format(self, context, query):
         """
-        為 VM 建立流程產生引導指令 Prompt。
-
-        :param context: VM 已設定參數文字，例如 image_id: rocky_9 等
-        :param options: 可用項目，格式為 {"image": [...], "flavor": [...], ...}
-        :return: 指令用的系統提示字串
+        專為將口語化、模糊不清或情境式中文問題，判斷並處理為技術查詢或直接回覆用語的 Prompt。
+        
+        :param context: 未使用，保留以便相容性
+        :param query: 使用者輸入的原始問題（可能口語、模糊）
+        :return: messages（用於 LLM 輸入）
         """
-        option_text = "\n".join([f"{k} 可選：{'、'.join(v)}" for k, v in options.items()])
 
-        system_prompt = f"""
-            你是一位雲端 VM 助理，如果當有人說出類似 **我要建立 vm** 的字眼，則開始進入 tools，如果沒有相關字眼則回復使用者他的問題，
-            如果有相關字眼則進入tools，請依序協助使用者設定五個參數，包含：image、flavor、network、security_group、password。
-            完成後請詢問使用者是否要建立 VM，需明確確認後才能執行建立動作。
+        system_prompt = (
+            "You are an expert in semantic understanding and technical domain judgment.\n\n"
+            "Your task:\n"
+            "1. Determine if the user's query is related to technical domains such as:\n"
+            "   - Cloud platforms & services\n"
+            "   - Kubernetes & containers\n"
+            "   - Networking & security (firewalls, security groups, floating IP, load balancing)\n"
+            "   - Virtualization (VMs, volumes, networks, key pairs)\n"
+            "   - Deployment & automation (CI/CD, registries, scaling, APIs)\n"
+            "   - Platform management (IAM, accounts, projects, logs, authentication)\n"
+            "   - Trusted Cloud services & related components\n\n"
+            "2. If technical content is detected, rewrite the query according to these rules:\n"
+            "   - Rewrite it into a single, clear technical statement (avoid questions or casual tone).\n"
+            "   - Keep only the explicit technical information from the original query (no creativity, no extra content).\n"
+            "   - Use English, concise and precise.\n"
+            "   - Output format:\n"
+            "     '✅ Technical content detected. Suggested technical query: {rewritten_query}'\n\n"
+            "3. If no technical content is detected, do not force the format. Instead, respond as:\n"
+            "   '❌ No specific technical content detected. Original query will be treated as a general request: {friendly_response}'\n"
+        )
 
-            禁止事項：
-            - 🚫 你不能主動填入任何預設值（即使你覺得使用者最常用 rocky_9 也不行）
-            - 🚫 一定要等所有參數都選擇完成才可以進入最後的建立 VM
-            - 🚫 如果使用者輸入無相關的字眼，就讓他再重新輸入，只要沒有輸入正確或者非常相關的選項，絕不能進入下一步驟
-            - ✅ 任何參數都只能在使用者明確輸入、確認之後，才能執行對應的工具操作
-            - ❌ 不可主動幫使用者決定參數
-            - ❌ 不可在未確認前自動建立 VM
-            - ❌ 不可自己填入參數
-            - ❌ 每次只能設定一個參數
-            - ❌ 回覆時不要提到任何函數名稱
-            - 回覆以英文為主，如果不是英文幫我翻譯成英文在回覆
+        user_content = f"The user's original query is as follows:\n「{query}」\n\nPlease perform the judgment and processing according to the above rules."
 
-            注意事項：
-            - ✅ 建立完成後，請清空所有記錄參數，並結束本次流程，不得再主動詢問或重新啟動建立 VM 的流程
-            - ✅ 所有流程都需由使用者主動觸發才可繼續
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_content}
+        ]
 
-            可選項目：
-            {option_text}
-            """
-                
-        return system_prompt
+        return messages
+
         
     def vm_instruction_prompt(self, context: str, options: dict) -> str:
         """

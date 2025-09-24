@@ -1,0 +1,25 @@
+Security Group
+Security Groups allow you to set rules to manage network segments, protocols, and ports for controlling network access.
+Create a security group
+Go to the security group management page and click ＋CREATE.
+Enter a name and description for the security group, then click NEXT: RULE SETTING＞.
+The system will preset a set of security group rules. Click ADD SECURITY GROUP RULE to create more security group rules.
+Fill in the settings in the Create Security Group Rule window and click OK when completed.
+Direction: Select ingress for input or egress for output.
+Port Range (Min): Set the starting port for applying this rule.
+Port Range (Max): Set the port range to which this rule ends.
+Protocol: Select the protocol you want to control, such as tcp, udp, icmp, etc.
+CIDR: The CIDR network segment to which this rule applies.
+After completing the new security group, click NEXT: REVIEW + CREATE >.
+Review the security group rule settings and click CREATE after confirming.
+Manage security groups
+After the security group is created, it will appear in the security group list. Click the more options icon on the right side of the list to perform Copy Service ID and Delete.
+Click on the list to view and manage the security group rules for that group.
+Delete a security group
+Click the more options icon to the right of the listing, then click Delete.
+Batch deletion
+To quickly delete multiple resources, click BATCH DELETE at the upper right corner of the management page.
+Check the items you want to delete and click OK.
+Manage security group rules
+Enter the security group rule management page to view the security group rule list. Click the more options button on the right side of the list to perform Copy ID and Delete.
+Click ＋CREATE at the top of the page to add security group rules.

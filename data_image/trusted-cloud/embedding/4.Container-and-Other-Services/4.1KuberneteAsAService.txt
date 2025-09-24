@@ -1,0 +1,66 @@
+Kubernete as a Service
+Provides Kubernetes cluster services to facilitate rapid deployment and management of containerized applications.
+Create K8S cluster
+Note: Please create a security group that includes the ingress 6443 port in advance.
+Select Kubernete as a Service from the Services list to enter the Kubernete as a Service management page, then click +CREATE.
+1. Basic info
+Fill in the name, description and select the K8S version, then click NEXT: FlAVOR>.
+2. Flavor
+Click View Resource Usage/Quota in the upper right corner to view the current resource quota and used amount. If the available resource quota has reached the upper limit and some models cannot be selected, you can contact your system administrator to increase the project resource quota.
+Number of master nodes: Set the number of master nodes, for example: 1, 3, 5.
+Worker Node Hardware Setting: The hardware model options provided here will vary depending on the server's hardware configuration. The system administrator can also set it according to the needs of the project.
+Computing Node Number: Set the number of computing nodes, which can be increased or decreased according to needs after establishment.
+Then click NEXT: NETWORK>.
+3. NETWORK
+Add Floating IP
+No Floating IP
+Auto Assign Floating IP
+Select Existing Floating IP
+Security Group: The drop-down menu here will automatically filter out the security groups that contain the ingress 6443 port. Please select a group that contains the security group that allows the ingress 6443 port.
+Then click NEXT: REVIEW + CREATE >.
+Tips: When establishing a K8S cluster, anindependent virtual network will be automatically created.
+4. Review + Create
+Check the creation settings and click CREATE after confirmation.
+Manage kubernete as a service
+After the Kubernete as a Service is created, it will appear in the list. It will take some time to establish the cluster. When the status is displayed as ready, you can start using it.
+Tips: When the status is displayed as under review, it means that this resource needs to be approved by the project admin before it can be created. The project admin can approve or reject the creation of this resource through the following two operations.
+1. On the management list page, click the more options icon, then click Review.
+2. Click the  Review icon in the command bar above.
+Click the more options icon on the right side of the list to perform Add Node, Upgrade, Configure Floating IP, Copy ID, or Delete.
+Click the list to view Kubernete as a Service details.
+Connection and network information
+In the Network Info section, you can view settings such as virtual network, API server endpoint, and security group.
+Virtual Network Name: The system automatically creates a virtual network for the K8S cluster. For detailed information, you can view the virtual network service.
+API Server Endpoint: Endpoint information for the K8S cluster API server endpoint.
+Security group: Security group, click MODIFY on the right side of the security group, select the security group and click OK.
+kubeconfig: K8S cluster configuration file. Click DOWNLOAD on the right side of kubeconfig to download this file.
+Click DOWNLOAD again. Please save it properly after downloading. This file can only be downloaded once. Without this file, you will not be able to connect.
+warning: Note: Please save kubeconfig properly after downloading. Once lost, it cannot be downloaded again.
+Tip: K8S cluster management tool - kubectl
+kubectl is a Kubernetes command-line tool that can manage K8S clusters, deploy applications, view and manage cluster resources, and view logs. For installation and usage instructions, please refer to Kubernetes official website.
+Update K8S version
+On the K8S cluster details page, click Upgrade K8S version icon above.
+Click UPGRADE after confirming the version to be upgraded.
+Tips: Only one version can be upgraded per update.
+The version upgrade takes some time, and you can start using it when the status shows ready.
+View log
+On the K8S cluster details page, click View Log icon above.
+Delete K8S cluster
+On the details page, click the Delete icon above.
+Worker node group
+Enter the details page, and then click the WORKER NODE GROUP tab above to view the current worker group information.
+Add worker node group
+Click + CREATE to add a new worker node group. After the settings are completed, click OK.
+Cluster name: Cluster name, automatically brought in by the system.
+Name: Enter the name of the worker node group.
+Flavor: Select the hardware settings.
+Computing node number: Set the number of computing node, which can be increased or decreased according to needs after creation.
+Change the number of computing node
+Move your mouse to the more options icon on the right and click Modify Count.
+Enter the number of computing nodes to be changed and click OK.
+Review list
+When the newly added computing node group resources need to be reviewed, they will be displayed in the review list and the status will be displayed as under review. They must wait for approval by the project admin before they can be created.
+The project admin can click the more options icon on the right side of the list, then click Review.
+Monitoring
+Enter the K8S cluster details page, and then click the MONITOR tab above to view monitoring indicators.
+Click the time menu above to change the time interval you want to view; click the node menu to change the node you want to view.

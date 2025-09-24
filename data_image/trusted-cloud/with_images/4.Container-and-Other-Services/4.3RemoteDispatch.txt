@@ -1,0 +1,156 @@
+# Remote Dispatch 
+
+This service provides the ability to dispatch HPC jobs to a remote high-speed computing cluster (Slurm Cluster) for computing with Singularity containers to achieve better resource utilization.g.
+
+## Preparation
+* Before creating a remote dispatch task, the required image and data must be sent to the remote end. Please refer to:
+ * [**Create remote image**](#Create-remote-image)
+ * [**Create remote data**](#Create-remote-data)
+
+## Remote dispatch
+### Create remote dispatch
+* Select **Remote Dispatch** from the Services list to enter the Remote Dispatch management page, and then click **+ CREATE**.
+
+#### 1. Basic Info
+* Name: Enter a name.
+* Description: (Optional) Enter a description.
+* Environment: Select a remote image environment.
+* Remote Image: Select a remote image. If the remote image has not been created yet, please click **Create Remote Image** first and complete the creation task.
+* Then click **NEXT: FLAVOR**>.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.3RemoteDispatch_img1.png）
+
+
+#### 2. Flavor
+* Computing Node Flavor: Select the computing node flavor. The flavor options provided here will vary depending on the server's hardware configuration. The system administrator can also set it according to the needs of the project.
+* Then click **NEXT: STORAGE>**.
+
+#### 3. Storage
+* Remote Data Source: Select the remote data storage and mounting path to add multiple remote data sources. If the remote data has not been created yet, please click **Create Remote Data** first and complete the creation task.
+* Remote output path: Select the remote output path to add multiple remote output paths.
+* Then click **NEXT: VARIABLES**>.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.3RemoteDispatch_img2.png）
+
+#### 4. Variables (Optional)
+* Environment Variable: Set the name and value of environment variables. Click **ADD** to add a set of settings.
+* Then click **NEXT: INITIALATION SCRIPT>**.
+
+Click **ADD** to add a set of settings.
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.3RemoteDispatch_img3.png）
+
+#### 5. Initialization Script (Optional)
+* Script: Choose **Normal** or **Nextflow**.
+ - Normal: Enter initialization commands, or import existing file.
+ - Nextflow: Select the storage volume and subpath of Nextflow source.
+* Then click **NEXT: REVIEW + CREATE >**.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.3RemoteDispatch_img4.png）
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.3RemoteDispatch_img5.png）
+
+
+#### 6. Review + Create
+* Check the creation settings and click **CREATE** after confirmation.
+
+### Manage remote dispatch
+* After a remote dispatch is created, it will appear in the list. Click the more options icon on the right side of the list to execute **Start**, **Copy ID** and **Delete**.
+* Click on the list to view service details.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.3RemoteDispatch_img6.png）
+
+### Delete
+* Click the more options icon on the right side of the list, then click **Delete**.
+
+### Batch deletion
+* If you want to quickly delete multiple resources, you can click **BATCH DELETE** on the upper right side of the management page.
+* Check the items you want to delete and click **OK**.
+
+### Start remote dispatch 
+* Enter the Remote Dispatch details page. When the status is **ready**, click the **Start** icon in the command line above to start the job.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.3RemoteDispatch_img7.png）
+
+* Then set whether this job requires storing data in the Data Storage service, and click **OK** after completion.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.3RemoteDispatch_img8.png）
+
+* Click the TRIAL LIST tab above to view the running status of the jobs.
+* After the remote task execution is completed, the system will send an email notification.
+* Move the mouse to the right side of the list to select **Stop**, **Show Output Directory**, **Copy ID**, **Download Log** or **Delete**.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.3RemoteDispatch_img9.png）
+
+## Remote image
+### Create remote image
+* Select **Remote Dispatch** from the Service list, then click **Remote Image** from the left menu to enter the Remote Image Management page, and then click **+CREATE**.
+
+#### 1. Basic Info
+* Name: Enter a name.
+* Environment: Select the remote environment.
+* Image Source: Select the remote image to be created.
+* Image Version: Select the image version.
+* Expire Date: Select **No Expiration** or **Expiration Date**, and set the expiration date and time. The image will be automatically deleted after expiration.
+* Then click **NEXT: REVIEW+CREATE>**.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.3RemoteDispatch_img10.png）
+
+#### 2. Review + Create
+* Check the creation settings and click **CREATE** after confirmation.
+
+### Manage remote image
+* After a remote image is created, it will appear in the list and the state will be displayed as  **`pending`**.
+ 
+### Sync
+* After the remote image is created, it needs to perform synchronization before it can be sent to the remote environment.
+* Click the more options icon on the right side of the list, and then click **Sync**.
+* The system will automatically send a notification email after the synchronization is completed.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.3RemoteDispatch_img11.png）
+
+### Delete
+* Click the more options icon on the right side of the list, then click **Delete**.
+
+### Batch deletion
+* If you want to quickly delete multiple resources, you can click **BATCH DELETE** on the upper right side of the management page.
+* Check the items you want to delete and click **OK**.
+
+## Remote data
+### Create remote data
+* Select **Remote Data** from the Service list, then click **Remote Data** from the left menu to enter the Remote Data Management page, and then click **+CREATE**.
+
+#### 1. Basic Info
+* Name: Enter a name.
+* Environment: Select the remote environment.
+* Data Source: Select the data source bucket and subpath. If the data storage has not been created yet, please create it first.
+* Image Version: Select the image version.
+* Expire Date: Select **No Expiration** or **Expiration Date**, and set the expiration date and time. The image will be automatically deleted after expiration.
+* Then click **NEXT: REVIEW+CREATE>**.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.3RemoteDispatch_img12.png）
+
+#### 2. Review + Create
+* Check the creation settings and click **CREATE** after confirmation.
+
+### Manage remote data
+* After a remote data is created, it will appear in the list and the state will be displayed as  **`pending`**.
+ 
+### Sync
+* After the remote data is created, it needs to perform synchronization before it can be sent to the remote environment.
+* Click the more options icon on the right side of the list, and then click **Sync**.
+* The system will automatically send a notification email after the synchronization is completed.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.3RemoteDispatch_img13.png）
+
+
+### Get data path
+* Click the more options icon on the right side of the list, and then click **Data Path** to view the data path.
+
+（Image:./trusted-cloud/image/4.Container-and-Other-Services/4.Container-and-Other-Services_4.3RemoteDispatch_img14.png）
+
+### Delete
+* Click the more options icon on the right side of the list, then click **Delete**.
+
+### Batch deletion
+* If you want to quickly delete multiple resources, you can click **BATCH DELETE** on the upper right side of the management page.
+* Check the items you want to delete and click **OK**.

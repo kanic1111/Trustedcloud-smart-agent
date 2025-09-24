@@ -1,0 +1,36 @@
+# Key Pair
+
+Provides key pair creation and management functions. To use a key pair as a credential for logging into a virtual machine, you must create it before creating the virtual machine.
+
+## Create a key pair
+* Select **Virtual Machine** from the Services list, then click **Key Pair** from the left menu to enter the key pair management page, and then click **＋CREATE**.
+* Enter the name of the key pair and click **OK**.
+* If you want to use your own key, you can fill in the key information in the **Public Key** field.
+
+（Image:./trusted-cloud/image/2.Virtual-Platform-Services/2.Virtual-Platform-Services_2.2KeyPair_img1.png）
+
+* Once the key pair is created, please be sure to click **DOWNLOAD** immediately and save the key pair. Without this key pair, you will not be able to connect to the virtual machine. 
+
+（Image:./trusted-cloud/image/2.Virtual-Platform-Services/2.Virtual-Platform-Services_2.2KeyPair_img2.png）
+
+
+:::warning
+:warning: **Note:** The system will not store your key pair. After the key pair is created, be sure to download and properly save the key pair (.pem file).
+:::
+
+## Manage key pairs 
+* The key pair will appear in the list after it is created.
+
+（Image:./trusted-cloud/image/2.Virtual-Platform-Services/2.Virtual-Platform-Services_2.2KeyPair_img3.png）
+
+### View key pair
+* Click the key pair list to enter the key pair details page, where you can view the basic information of the key pair or copy the public key.
+
+（Image:./trusted-cloud/image/2.Virtual-Platform-Services/2.Virtual-Platform-Services_2.2KeyPair_img4.png）
+
+### Delete a key pair
+* Click the more options icon on the right of the list, then select Delete.
+
+### Batch deletion
+* If you want to quickly delete multiple resources, you can click **BATCH DELETE** on the upper right side of the management page.
+* Check the items you want to delete and click **OK**.

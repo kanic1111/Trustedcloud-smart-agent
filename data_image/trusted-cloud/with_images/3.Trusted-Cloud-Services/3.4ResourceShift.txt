@@ -1,0 +1,22 @@
+# Resource Shift
+
+This service can view and manage resource transfer records, such as virtual machines or specific application service.
+
+:::warning
+:warning: **Note**: This service is only available in public portal.
+:::
+
+* Select Resource Shift from the Services list to enter the Resource Shift Management page. The transferred resource records will be displayed in the list.
+* Click on the list to view and manage transferred versions.
+
+（Image:./trusted-cloud/image/3.Trusted-Cloud-Services/3.Trusted-Cloud-Services_3.4ResourceShift_img1.png）
+
+## Delete a resource transfer record
+:::info
+:bulb: **Tips:** Only resource transfer records are deleted here. Resources transferred to the private area will occupy the resource space quota of the project. If they are not needed, please delete them in the private area.
+:::
+* Click the more options icon on the right side of the list, and then click **Delete**.
+
+## Batch deletion
+* If you want to quickly delete multiple resource transfer records, you can click **BATCH DELETE** on the upper right side of the management page.
+* Check the item to be deleted then click **OK**.

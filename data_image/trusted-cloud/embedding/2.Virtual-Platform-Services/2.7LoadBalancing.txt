@@ -1,0 +1,65 @@
+Load Balancing
+Provides a virtual load balancer function that can distribute traffic to different servers or resources when the service traffic increases to maintain service flexibility, scalability, and high availability.
+Establishing load balancing
+Select Load Balancing from the Services list to enter the Load Balancing Management page, then click ＋CREATE.
+1. Basic info
+* Name: Enter a name.
+* Description: Enter a description.
+* Virtual Network: Select a virtual network. Please select the same virtual network as the service.
+* Then click Next: LISTENER/POOL＞.
+2. Listener/Pool
+Listener
+Name: Enter a name for the listener.
+Listener Protocol: Select a listener protocol, for example, HTTP, HTTPS, TERMINATED_HTTPS, TCP, or UDP.
+Listener Port: Enter the listener port.
+Insert Headers: When the listener uses HTTP/HTTPS protocol, you can check the Insert Headers option.
+X-Forwarded-For
+X-Forwarded-Port
+X-Forwarded-Proto
+Timeout: When the listener uses HTTP/HTTPS protocol, you can customize the connection timeout settings.
+Client Inactive Timeout (Seconds)
+Server Connection Timeout (Seconds)
+Server Inactive Timeout (Seconds)
+TCP Inspection Timeout (Seconds)
+Certification: When the listener protocol is selected as HTTPS or TERMINATED_HTTPS, you need to set the certification. Click SETTING and then import the SSL certification and key in PEM format.
+Whitelist: Set up a whitelist of allowed connections. Click ADD and enter the IP range allowed to connect.
+Pool
+Pool: Check to create a new pool.
+Pool Name: Enter the target group name.
+Pool Port: Enter the port number.
+Method: Select SOURCE_IP_PORT, LEAST_CONNECTIONS, ROUND_ROBINS, LEAST_CONNECTIONS, or SOURCE_IP.
+Pool members: Click ADD, then select the Virtual Machine or Custom Member IP.
+Tip: Automatic expansion is available for target members only after load balancing is established. Please refer to Manage pool.
+Click ADD LISTENER at the bottom of the page to add a new listener/pool.
+Then click NEXT: REVIEW + CREATE > after completion.
+3. REVIEW + CREATE
+* Check the creation settings and click CREATE after confirming.
+Manage load balancing
+After the load balancing is established, it will appear in the list. Click the more options icon on the right side of the list to perform Configure Floating IP, Copy Service ID or Delete.
+Click on the list to view the detailed information of the service. When the state shows active, you can start using it.
+Attach a floating IP/Detach ａ floating IP
+Click the more options icon on the right side of the list, then click Attach Floating IP.
+After the configuration is complete, the floating IP will be displayed in the list.
+Click the more options icon on the right side of the configured floating IP list and click Detach to detach the floating IP.
+Delete a load balancing
+Click the more options icon on the right side of the list, then click Delete.
+Batch deletion
+If you want to quickly delete multiple resources, you can click BATCH DELETE on the upper right side of the management page.
+Check the item to be deleted then click OK.
+Manage listeners
+Enter the load balancing details page and click the LISTENER tab to view and manage listener settings.
+Create a new listener
+Click CREATE to add a listener.
+Delete a listener
+Click the More options icon on the right side of the list, then click DELETE.
+View/Change listener settings
+Click the list to enter the details page to view or change the settings of this listener.
+Manage pools
+Enter the load balancing details page and click the POOL tab at the top to view and manage target group settings.
+Create a new pool
+Click CREATE to add a pool.
+The newly added pool will be displayed in the list and can be selected by the listener.
+Delete a pool
+Click the More options icon on the right side of the list, then click DELETE.
+View/Change pool settings
+Click on the list to enter the details page to view or change the settings of this pool.

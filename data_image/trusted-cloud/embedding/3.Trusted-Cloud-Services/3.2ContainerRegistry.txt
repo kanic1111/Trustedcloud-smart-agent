@@ -1,0 +1,99 @@
+Container Registry
+The Container Registry service is a private container images repository. Through a safe and reliable management mechanism, a simple and easy-to-use graphical management interface, convenient container image templates and pre-loaded rich machine learning development environment image, it helps you create, store and manage container images and share them with other project members.
+Create a container image through docker commands
+Note: Prerequisites
+1. This document is written for those who have experience in using Docker and containers. Please have a basic understanding of Docker and Containers before using this service.
+2. Please make sure that Docker is installed on your local machine and can execute Docker CLI commands. Docker can be installed in Windows, Linux and MacOS environments. For installation information on different operating systems, please refer to the Docker Documentation.
+3. Depending on your system environment and user permissions, you may need to add sudo before executing the Docker command.
+1. Prepare a container image
+Before using the container registry service, please prepare your container images. There are many ways to prepare container images. Two common methods are described below.
+1.1 Get a container image from other sources
+Quickly get images from public image repositories such as Docker Hub or NVIDIA NGC, for example NVIDIA CUDA, a GPU-optimized container image on NVIDIA NGC.
+* Run the command docker pull nvcr.io/nvidia/cuda:11.2.0-cudnn8-devel-ubuntu20.04 in the terminal window to get the image.
+$ docker pull nvcr.io/nvidia/cuda:11.2.0-cudnn8-devel-ubuntu20.04
+11.2.0-cudnn8-devel-ubuntu20.04: Pulling from nvidia/cuda
+d7bfe07ed847: Pull complete
+...
+Digest: sha256:1cfa79e60f22dc5567fd726e2b4e24f94e1936e98be69c25ecf8cc141907c1df
+Status: Downloaded newer image for nvcr.io/nvidia/cuda:11.2.0-cudnn8-devel-ubuntu20.04
+nvcr.io/nvidia/cuda:11.2.0-cudnn8-devel-ubuntu20.04
+Then run docker images command to view the image and confirm that the image has been downloaded to the local machine.
+$ docker images
+REPOSITORY            TAG                               IMAGE ID           CREATED         SIZE
+nvcr.io/nvidia/cuda    11.2.0-cudnn8-devel-ubuntu20.04  bb0c3c0afdd8       6 weeks ago     6.93GB
+1.2 Create a container image from dockerfile
+Dockerfile is a text file used to configure the creation information of the image. It contains base image information, image commands, and execution instructions when the container starts.
+Please create a folder with any name you want.
+$ mkdir myimage
+$ cd myimage
+Compose the Dockerfile in a text editor
+$ vi Dockerfile
+Paste the following example; or modify it according to your needs.
+=
+FROM nvcr.io/nvidia/cuda:11.2.0-cudnn8-devel-ubuntu20.04
+CMD ["echo", "Hello World"]
+Once the Dockerfile is ready, the image can be built with the docker build command, for example:
+$ docker build -t example:v001 .
+In the above command, -t represents the tag of the specified image. In this example, the specified image tag is example:v001, and the last . indicates that the Dockerfile is in this working directory.
+After the image is created, you can use the docker images command to check whether the image is created successfully.
+$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+example      v001      e54c9582e997   6 weeks ago   6.93GB
+Tips: There are many usages of docker build. For more information, please refer to the official Docker Documentation: docker build usage and examples.
+2. Tag the image to be uploaded
+After preparing the Docker image to be uploaded, you need to obtain the relevant information provided by Container Image Service to tag the image to be uploaded.
+Select Container Image from the service list to enter the container image management page, then click the LOCAL DOCKER PUSH IMAGE COMMAND, and then click the Copy icon on the right side of the docker tag command that contains information about this project.
+Paste the copied content into the local environment, and modify the content in parentheses:
+docker tag：The command to tag the image. For details, please refer to the official Docker documentation.
+{Source Image Name}:{Tag}: The name and tag of the local source image.
+{Container Registry}：Container Registry for this system.
+{Container Registry}/{Project ID}/{Image Name}:{Tag}：It is the Repository:Tag of the uploaded image, the system will automatically bring up the Project ID, and the Image Name and Tag can be named by yourself. If the same Image Name or Tag already exists in the same project, the original image will be replaced after uploading.
+docker tag {Source Image Name}:{Tag} {Container Registry}/{Project ID}/{Image Name}:{Tag}
+* Execute the modified command in the terminal window, for example:
+docker tag example:v001 {Container Registry}/{Project ID}/myimage:v001
+Run docker images again to confirm the tagging result.
+Tips: IMAGE ID of the same image will be the same, and the IMAGE ID can correspond to multiple REPOSITORY:TAGs.
+3. Upload the image
+Continuing from the previous step, upload the tagged image to the Container Registry provided with the container image by command.
+Before uploading the image, you need to log in to the Container Registry of this system, and enter the complete login command in the terminal window:
+$ docker login {Container Registry}
+The first time you log in, you need to enter your TWCC host account and password. After successful login, a Login Succeeded message will appear on the screen.
+$ docker login {Container Registry}
+Username:
+Password:
+...
+Login Succeeded
+Similar to the previous step, the command format for uploading an image can be obtained from the container image management page.
+The command format for uploading an image is as follows:
+docker push {Container Registry}/{Project ID}/{Project ID}/{Image Name}:{Tag}
+Execute the command to upload the image in the terminal window, for example:
+docker push {Container Registry}/{Project ID}/myimage:v001
+After the upload is complete, a Pushed message will appear.
+The push refers to repository [{Container Registry}/{Project ID}/myimage]
+a790f937a6ae: Pushed
+v001: digest: sha256:bace9fb0d5923a675c894d5c815da75ffe35e24970166a48a4460a48ae6e0d19 size: 529
+Go back to the container registry management page, enter the tag list of the uploaded image, and click the Refresh icon above. When the image state changes to pushed and shows the image size, it means that the image has been uploaded successfully.
+Tips: About image size
+For better performance, the system will compress the image, so the image size displayed here will be different from the size seen on the local side.
+Note: The Push-Command example in this document is for reference only, the Push-Command you get may be different.
+Use container images
+Once your image is successfully uploaded, it will be available for selection from the PROJECT category of Image Source when creating container-related services (e.g. Remote Dispatch), and can be shared with all project members.
+Manage container images
+Enter the container registry management page to view the container image list, click on the field name to sort, use smart search, view usage, batch delete or move the mouse to the more options icon on the right side of the list and click Edit Description or Delete.
+View usage
+Click on VIEW USAGE at the top right of the Management page to view the container image storage usage and quota for the project.
+Replace an existing image
+Go to the image tag list of the container image, click the Copy icon below Push-Command to get the content of the Push-Command.
+Similar to the steps for uploading an image, execute the copied Push-Command command in the terminal window to upload and replace the container image with the same tag.
+docker push {Container Registry}/{Project ID}/myimage:v001
+Pull image
+In the list of image tags to be selected, click the copy icon under Pull-Command to get the command docker pull to download this image and the Repository:Tag of this image.
+Delete a container image
+If the image is no longer needed, you can delete it to save system space.
+Delete container image with specific tag
+Enter the tag list page of the container image file, click the more options icon on the right side of the list, and then click Delete
+Delete the entire container image
+Enter the container image management page, move the mouse to the more options icon on the right side of the container image, and then click Delete. Please note: This container image and all tagged container images under it will be deleted.
+Batch deletion
+If you want to quickly delete multiple resources, you can click BATCH DELETE on the upper right side of the management page.
+Check the items you want to delete and click OK.
