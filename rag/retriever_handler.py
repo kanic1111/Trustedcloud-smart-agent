@@ -1,4 +1,5 @@
 import sys
+import time
 import os
 sys.path.append(os.path.join(os.getcwd(), 'prompt'))
 
@@ -102,6 +103,7 @@ class RetrieverHandler:
         """
         retrieve_res = []
         unique_docs = {}
+        start = time.time()
         for name, retriever in self.retrievers.items():
             print(f"🔍 使用 {name} 檢索器 (權重: {self.weights[name]})...")
             print(retriever)
@@ -121,9 +123,10 @@ class RetrieverHandler:
         
         # ✅ 進行 reranker 排序
         query_bundle = QueryBundle(query_str=prompt)
+        ranked_nodes = self.reranker._postprocess_nodes(final_nodes, query_bundle=query_bundle) # this took 10~13 second
         
-        ranked_nodes = self.reranker._postprocess_nodes(final_nodes, query_bundle=query_bundle)
-        
+        end = time.time()
+        print(f"Execution test time:", end - start, "seconds")
         self.print_ranked_nodes(ranked_nodes)
 
         # 顯示檢索結果

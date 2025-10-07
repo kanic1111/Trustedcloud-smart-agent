@@ -17,6 +17,8 @@ class TrustedCloudVMBuilder:
         }
         # ip 變更改這就好
         self.url = 'http://kong.140-110-139-103.nip.io/'
+        # self.url = 'http://www.140-110-160-253.nip.io:5173/'
+        # self.url = 'http://www.140-110-160-253.nip.io/'
         
         # self.project_id = project_id
         self.project_id = self.list_projects()[0]

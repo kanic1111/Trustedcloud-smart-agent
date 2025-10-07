@@ -146,8 +146,10 @@ class VMAgentManager:
         '''
         if is_technical :
             # retriever
-            ques_str, retrieve_file = self.retriever.format_retrieved_result(cleaned_content, prompt_style=self.prompt_style)
-
+            start = time.time()
+            ques_str, retrieve_file = self.retriever.format_retrieved_result(cleaned_content, prompt_style=self.prompt_style) # retriever took 10s to execute
+            end = time.time()
+            print("Execution time:", end - start, "seconds")
             # llm
             response = self.model_handler.ask_openai(self.llm, ques_str, True)
             return response
@@ -155,14 +157,29 @@ class VMAgentManager:
             #print(response)
             #return response
         else:
+            import textwrap
+            system_prompt = textwrap.dedent(""" warp user question with **()** and please only response with: It seems like your Question: {user question}  isn't a technical question in TrustedCloud.
+                The available questions are shown below:
+                - **how to create virtual machine(vm)**
+                - **how to create Application(Jupyter_or_python)**
+                - **how to create k8s(kuberentes)**
+                - **how to create virtual disk**
+                - **how to create virtual image**
+                - **how to setup firewall**
+                - **how to setup security group**
+                - **how to create autoscale**
+
+                If you want me to help you create **Virtual Machine** or **Application**
+                you can use the button above to switch to Assistant mode,
+                """)
             input=[
             {
                 "role": "system",
-                "content": "response like a chat bot, reply with English"
+                "content": system_prompt
             },
             {
                 "role": "user",
-                "content": cleaned_content
+                "content": user_input
             }]
             response = self.model_handler.ask_openai(self.llm, input, True)
             print(response)

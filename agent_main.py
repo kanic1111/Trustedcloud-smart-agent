@@ -4,7 +4,7 @@ from jupyter_agent_api import router as jupyter_router
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from vm_api import router as vm_router
-
+import os 
 app = FastAPI()
 # 提供靜態圖片資料夾服務（預設圖片放在 static/images/）
 app.mount("/images", StaticFiles(directory="data_image/trusted-cloud/image"), name="images")
@@ -19,7 +19,6 @@ app.add_middleware(
 app.include_router(vm_router, prefix="/agent")
 app.include_router(llm_router, prefix="/agent")
 app.include_router(jupyter_router, prefix="/agent")
-
 # Optional root check
 @app.get("/")
 async def list_routes():

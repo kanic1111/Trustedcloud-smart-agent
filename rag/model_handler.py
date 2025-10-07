@@ -1,6 +1,7 @@
 # LLM 相關庫
 from llama_index.llms.ollama import Ollama
 from openai import OpenAI
+import torch
 
 # Qdrant 相關庫
 from rag.qdrant_retriever import *
@@ -17,6 +18,7 @@ from llama_index.postprocessor.flag_embedding_reranker import FlagEmbeddingReran
 from utils.parser import *
 # 時間
 import time
+
 
     #---------------------------------------------------------------------
     # 處理Qd & llm連線
@@ -54,22 +56,22 @@ class ModelHandler:
         self.api_key = api_key
         self.embed_model_name = embed_model_name
 
-
+        
         # TODO 要改參數讀取
         self.base_url, _  = self.get_base_url()
         self.openai_base_url = openai_base_url
 
 
         self.embed_model = self.embed_model_settings()
-        self.similarity_top_k = similarity_top_k
-
+        #self.similarity_top_k = similarity_top_k
+        self.similarity_top_k = 2
         # ✅ 初始化 Qdrant 向量庫管理器
         self.qdrant_manager = qdrant_manager if qdrant_manager else QdrantManager()
         print('✅ embed_model和Qdrant name', self.embed_model, self.Qdrant_vector_collection_name)
         self.index = self.qdrant_manager.qdrant_vector(self.embed_model, self.Qdrant_vector_collection_name)
 
         # ✅ 初始化 Reranker
-        self.reranker = FlagEmbeddingReranker(top_n=self.reranker_top, model=reranker_model)
+        self.reranker = FlagEmbeddingReranker(top_n=self.reranker_top, model=reranker_model, use_fp16=True)
 
         # ✅ 初始化 LLM 和檢索引擎
         self.retriever_engine = self.initialize_retriever_core()  # ⚡️ 這裡不使用 Streamlit 變數
@@ -211,13 +213,13 @@ class ModelHandler:
                     for event in response_stream:
                         delta = event.choices[0].delta
                         if hasattr(delta, "content") and delta.content:
-                            buffer += delta.content + " "
-                            print(buffer)
+                            buffer += delta.content
+                            print(delta.content)
                             content = parser.convert_image_tags(buffer)
+                            #buffer = ""
                             for parsed in content:
                                 yield json.dumps(parsed, ensure_ascii=False) + "\n"
                             #yield content
-                        buffer = ""
                 return generate()
             else:
                 return response_stream
