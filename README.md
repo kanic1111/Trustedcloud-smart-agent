@@ -1,5 +1,10 @@
 # Trustedcloud-smart-agent
 
+**update config**
+```bash=
+cp config/config_example.yaml config/settings.yaml
+nano config/settings.yaml #change the config 
+```
 **to build the image**
 ```bash=
 docker build -t trusted-cloud-agent:dev .
