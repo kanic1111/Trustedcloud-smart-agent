@@ -20,6 +20,7 @@ app.include_router(vm_router, prefix="/agent")
 app.include_router(llm_router, prefix="/agent")
 app.include_router(jupyter_router, prefix="/agent")
 # Optional root check
+#print("test")
 @app.get("/")
 async def list_routes():
     route_list = []

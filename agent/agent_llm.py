@@ -147,10 +147,15 @@ class VMAgentManager:
         if is_technical :
             # retriever
             start = time.time()
-            ques_str, retrieve_file = self.retriever.format_retrieved_result(cleaned_content, prompt_style=self.prompt_style) # retriever took 10s to execute
+            ques_str, retrieve_file = self.retriever.format_retrieved_result(cleaned_content, prompt_style=self.prompt_style, user_input=user_input) # retriever took 10s to execute
             end = time.time()
             print("Execution time:", end - start, "seconds")
             # llm
+            ques_str.append({
+                "role": "user",
+                "content": f"User's question: {user_input}"
+            })
+            print(ques_str)
             response = self.model_handler.ask_openai(self.llm, ques_str, True)
             return response
             #response = response.choices[0].message.content.strip()
@@ -158,19 +163,22 @@ class VMAgentManager:
             #return response
         else:
             import textwrap
-            system_prompt = textwrap.dedent(""" warp user question with **()** and please only response with: It seems like your Question: {user question}  isn't a technical question in TrustedCloud.
+            system_prompt = textwrap.dedent("""
+                warp user question with **()**,
+                Output should not be change,
+                Output only response with: It seems like your Question: {user question}  isn't a technical question in TrustedCloud.
                 The available questions are shown below:
                 - **how to create virtual machine(vm)**
                 - **how to create Application(Jupyter_or_python)**
                 - **how to create k8s(kuberentes)**
                 - **how to create virtual disk**
                 - **how to create virtual image**
-                - **how to setup firewall**
                 - **how to setup security group**
                 - **how to create autoscale**
 
                 If you want me to help you create **Virtual Machine** or **Application**
-                you can use the button above to switch to Assistant mode,
+                you can use the button above to switch to Assistant mode.
+                You can also check the User Guide in [Trusted-Cloud User Guide](https://docs.trusted-cloud.nchc.org.tw/s/user-guide-en)
                 """)
             input=[
             {

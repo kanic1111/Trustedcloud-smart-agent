@@ -161,7 +161,7 @@ class RetrieverHandler:
         
         return context_str, retrieve_file
 
-    def format_retrieved_result(self, prompt, prompt_style="basic", return_nodes=False):
+    def format_retrieved_result(self, prompt, prompt_style="basic", return_nodes=False, user_input=""):
         """
         依據檢索結果格式化最終輸出
         :param prompt: 使用者查詢問題
@@ -173,8 +173,7 @@ class RetrieverHandler:
         context_str, retrieve_file = self._process_retrieve_results(ranked_nodes)
         
         # context_str, retrieve_file = self.retrieve_res_processing(prompt)
-        ques_str = self.prompt_formatter.format_prompt(context_str, prompt, prompt_style)
-
+        ques_str = self.prompt_formatter.format_prompt(context_str, prompt, prompt_style, user_input=user_input)
         if return_nodes :
             return ques_str, retrieve_file, ranked_nodes
         else:

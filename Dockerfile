@@ -3,6 +3,9 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # 安裝依賴（路徑改成相對於 build context）
+COPY services/vm_agent_api/vm_api.py /app/
+COPY services/llm_api/llm_api.py /app/
+COPY services/jupyter_agent_api/jupyter_agent_api.py /app/
 COPY ./requirements.txt /app/
 RUN pip install --no-cache-dir -r /app/requirements.txt
 

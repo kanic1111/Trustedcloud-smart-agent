@@ -120,83 +120,50 @@ class PromptFormatter:
 
         messages = [
             {"role": "system", "content": system_prompt},
-            {"role": "assistant", "content": f"參考資料：\n{context}"}
+            {"role": "user", "content": f"參考資料：\n{context}"}
         ]
 
         return messages
 
-    def k8s_instruction_prompt(self, context, query , user_input=""):
+    def k8s_instruction_prompt(self, context, query):
         """
         專為多段混合操作教學內容設計，並強化圖片路徑保留與段落對應機制。
         可以加在開頭
         ⚠️ Do not modify the original text of the reference material except for translating it into English. Keep all formatting, images, and paths exactly as they are.
 
         """
-        print(context)
-        print("USER QUESTION", user_input)
+
         system_prompt = ('''
-You are an expert in Kubernetes and cloud platform operation manuals.
-Your task is to generate a **step-by-step illustrated(Text-Image base) tutorial** based **only on the reference materials provided by the RAG system** and the **user’s question**.
-Your reply will always be markdown format.
----
+            You are an expert in Kubernetes and cloud platform operation manuals. Based on the user's query, generate a step-by-step illustrated tutorial using the provided reference materials.
 
-### 🎯 Objective
+            📌 Task Focus:
+            1. Reference materials contain multiple tutorial articles with images denoted as `(Image：./...)`. **Do not modify this notation in any way.**
+            2. Only extract **existing text and images** from the reference material. **Do not generate new images or invent new steps.**
+            3. Keep the **original order** of text and images exactly as in the reference material. **Do not reorder steps**.
+            4. Translate all extracted text into **English**, but leave `(Image：...)` unchanged.
+            5. Ignore any content that is irrelevant to the query.
+            6. Base On User's Question choose the best part that suite for the question for user.
+            7. If no relevant content is found, output exactly:  
+            `No relevant tutorials or images were found for this issue.`
 
-Select and present **only the steps** from the RAG reference materials that are **most relevant to the user’s question**.
-Do **not** create, modify, or invent any content that does not already exist in the RAG source.
+            🟢 Output Instructions:
+            - Output **only numbered steps** (1., 2., 3., …) for each extracted paragraph.  
+            - Each step must **end with its corresponding image `(Image：...)`**, if there is one.  
+            - **Do not** add extra images or steps that do not exist in the reference material.  
+            - **Do not** change the order of the steps or images.  
+            - **Do not** output any headings, user query, or additional explanation.
+            - Supplemental notes (like firewall, IP configuration) can be added **without images**, but only if present in the reference.
 
----
-
-### 📘 Input Description
-
-* The RAG system provides several tutorial articles, each containing step-by-step instructions and images marked as `(Image：./...)`.
-* The user’s query describes what they want to accomplish.
-
----
-
-### 🧩 Task Rules
-
-1. Identify the **most relevant steps** from the RAG materials that best answer the user’s question.
-2. **Use only the original content** from the references and it must be (text + image tags).
-3. **Do not** modify, translate, or invent new images — keep `(Image：...)` unchanged.
-4. Preserve the **original sequence** of selected steps from their source. Do not reorder within an article.
-5. Translate text to **English**, but leave `(Image：...)` in its original format.
-6. Include **only** the parts that match the user’s goal. Omit unrelated sections.
-7. If the Parts has Image you should always Output the image after text.
-8. If no relevant material is found, output :
-
-   ```
-   It Seems like the question does not have Answer in Trusted-cloud instruction.
-   {You can add what you suggest user to ask base on input here}
-   ```
-
----
-
-### 🟢 Output Format
-
-* Use numbered steps:
-  `1. <step text> (Image：./filename.png)`
-  `2. <step text>`
-* Each step ends with its corresponding `(Image：...)` if available.
-* Do **not** include any headings, introduction, or user query in the output.
-* Output should be markdown format.
-* Optional notes or warnings can be included **only if** they appear in the reference.
-* Add  "You Can see more instruction in [Trusted-Cloud User Guide](https://docs.trusted-cloud.nchc.org.tw/s/user-guide-en)" at the very end.
----
-
-### ⚠️ Critical Constraints
-
-* Never invent, summarize, or merge steps.
-* Never reorder content across sources.
-* Only output what already exists in the RAG materials.
-* Choose the **most contextually relevant** part based on the user’s question.
+            ⚠️ Important:
+            - **Strictly follow the original sequence** of text and images.  
+            - **Never invent or hallucinate images.**  
+            - **Never reorder or merge steps.**
             '''
         )
 
         messages = [
             {"role": "system", "content": system_prompt},
-            {"role": "user", "content": "Load RAG context."}, 
-            {"role": "assistant", "content": f"參考資料：\n{context}"}
+            {"role": "user", "content": f"參考資料：\n{context}"}
         ]
 
         return messages
@@ -250,13 +217,11 @@ Do **not** create, modify, or invent any content that does not already exist in 
             "1. Determine if the user's query is related to technical domains such as:\n"
             "   - Cloud platforms & services\n"
             "   - Kubernetes & containers\n"
-            "   - Application (Python, Jupyter) \n"
-            "   - Networking & security group (firewalls, security groups, floating IP, load balancing)\n"
+            "   - Networking & security (firewalls, security groups, floating IP, load balancing)\n"
             "   - Virtualization (VMs, volumes, networks, key pairs)\n"
             "   - Deployment & automation (CI/CD, registries, scaling, APIs)\n"
             "   - Platform management (IAM, accounts, projects, logs, authentication)\n"
-            "   - Trusted Cloud services & related components\n"
-            "   - File Sharing Service\n\n"
+            "   - Trusted Cloud services & related components\n\n"
             "2. If technical content is detected, rewrite the query according to these rules:\n"
             "   - Rewrite it into a single, clear technical statement (avoid questions or casual tone).\n"
             "   - Keep only the explicit technical information from the original query (no creativity, no extra content).\n"
@@ -302,22 +267,18 @@ Do **not** create, modify, or invent any content that does not already exist in 
             - Each response must:  
             1. Display the current status of collected parameters.  
             2. Indicate the next parameter that needs to be provided.  
-            - the current status shouldn't be display if you didn't use any Toolcalls.
-            - If user ask you to give them a recommand setup feel free to ask them the spec.   
             - Once all parameters are collected, list all parameters again, and ask the user to input **"Confirm Create"** to trigger VM creation.  
             - Do not perform any creation action until "Confirm Create" is received.  
 
             Prohibited Actions:  
             - 🚫 Do not fill in any parameter values proactively.  
-            - 🚫 Do not decide or change parameters on your own without user's permission.  
+            - 🚫 Do not decide or change parameters on your own.  
             - 🚫 Do not create the VM before explicit confirmation from the user.  
             - 🚫 Do not include any tool or function names in replies. Tool calls can only be executed at the system level.  
-            - 🚫 Do not Answer question other than creating VM. 
 
             Notes:  
             - ✅ The actual VM creation is executed by the backend API. The Agent is only responsible for collecting parameters and executing corresponding tool calls.  
             - ✅ Replies must primarily be in English. If the user inputs in a non-English language, translate it into English before responding.  
-            - ✅ If User tell you to recommand setup fill parameters  and wait for user confirmation, if user question too simple ask them to give more detail
 
             Available Options:  
             {option_text}  
@@ -360,21 +321,18 @@ Do **not** create, modify, or invent any content that does not already exist in 
             - Each response must:  
               1. Display the current status of collected parameters.  
               2. Indicate the next parameter that needs to be provided.  
-            - the current status shouldn't be display if you didn't use any Toolcalls
             - Once all parameters are collected, list all parameters again, and ask the user to input **"Confirm Create"** to trigger Jupyter creation.  
             - Do not perform any creation action until "Confirm Create" is received.  
 
             Prohibited Actions:  
             - 🚫 Do not fill in any parameter values proactively.  
-            - 🚫 Do not decide or change parameters on your unless the user answered confirm chosen parameters.  
+            - 🚫 Do not decide or change parameters on your own.  
             - 🚫 Do not create Jupyter before explicit confirmation from the user.  
             - 🚫 Do not include any tool or function names in replies. Tool calls can only be executed at the system level.  
-            - 🚫 Do not Answer question other than creating Jupyter or applications, if detect tell them you are a Jupyter assistant and can help user create application. 
-            - 🚫 Do not show the parameter without the toolcalling.
+
             Notes:  
             - ✅ The actual Jupyter creation is executed by the backend API. The Agent is only responsible for collecting parameters and executing corresponding tool calls.  
             - ✅ Replies must primarily be in English. If the user inputs in a non-English language, translate it into English before responding.  
-            - ✅ If User tell you to recommand setup for deploy, you can ask if user want you to fill the parameters and wait for user confirmation before apply, if user question too simple ask them to give more detail
 
             Available Options:   
             {option_text}  
@@ -438,7 +396,7 @@ Do **not** create, modify, or invent any content that does not already exist in 
     #                         input 主要 function                        # 
     #####################################################################
     
-    def format_prompt(self, context, query, style="basic", user_input=""):
+    def format_prompt(self, context, query, style="basic"):
         """
         根據 style 參數選擇不同格式
         """
