@@ -202,7 +202,8 @@ class VMAgentManager:
         ]):
             return {"success": False, "message": "參數未完整，無法建立 VM。"}
         
-        user_confirmation = confirmation.strip().lower()
+        #user_confirmation = confirmation.strip().lower()
+        user_confirmation = confirmation
         # 確認字串必須是「確定建立」
         if user_confirmation != "confirm create":
             return {"success": False, "message": "Please enter「confirm create」to proceed with VM creation."}
@@ -219,9 +220,9 @@ class VMAgentManager:
         self.wrapper.reset_context()
 
         if result:
-            return {"success": True, "message": f"✅ 已成功建立 VM：{result.get('id')}，名稱為 {result.get('name', '未知')}"}
+            return {"success": True, "message": f"✅ Successfully created VM: {result.get('id')}, with name {result.get('name', 'Unknown')}"}
         else:
-            return {"success": False, "message": "❌ 建立 VM 失敗，請稍後再試。"}
+            return {"success": False, "message": "❌ Failed to create VM. Please try again later."}
 
 
 def handle_vm_creation_flow(manager, user_input: str, session_store):
@@ -248,6 +249,9 @@ def handle_vm_creation_flow(manager, user_input: str, session_store):
     ])
 
     if params_complete:
+        # 轉為小寫，並去頭尾空白
+        user_input = user_input.strip().lower()
+
         if "confirm create" in user_input:
             result = manager.create_vm_from_context(confirmation="confirm create")
             print('result')

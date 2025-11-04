@@ -144,7 +144,8 @@ class VMAgentManager:
         '''
         去冒號部分
         '''
-        if is_technical :
+#        if is_technical :
+        if True:
             # retriever
             start = time.time()
             ques_str, retrieve_file = self.retriever.format_retrieved_result(cleaned_content, prompt_style=self.prompt_style, user_input=user_input) # retriever took 10s to execute
